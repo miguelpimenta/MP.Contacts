@@ -78,6 +78,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DAL\ILitedbDAL.cs" />
+    <Compile Include="DAL\LitedbConn.cs" />
+    <Compile Include="DAL\LitedbDAL.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Models\Binary.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\MenuItem.cs" />
@@ -93,6 +97,8 @@
     <Compile Include="Support\RelayCommand.cs" />
     <Compile Include="Support\RelayCommandAsync.cs" />
     <Compile Include="Support\StaticResourceConverter.cs" />
+    <Compile Include="Utils\Extensions.cs" />
+    <Compile Include="Utils\Log2Txt.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
@@ -160,7 +166,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DAL\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,5 +5,44 @@
     <Setting Name="AppName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Contacts</Value>
     </Setting>
+    <Setting Name="DBConnString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Contacts.db4</Value>
+    </Setting>
+    <Setting Name="DBPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DB</Value>
+    </Setting>
+    <Setting Name="DBFilename" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Contacts.db4</Value>
+    </Setting>
+    <Setting Name="DBPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DBCacheSize" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">5000</Value>
+    </Setting>
+    <Setting Name="DBTimeout" Type="System.TimeSpan" Scope="Application">
+      <Value Profile="(Default)">00:10:00</Value>
+    </Setting>
+    <Setting Name="DBMode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Shared</Value>
+    </Setting>
+    <Setting Name="DBInitialSize" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DBLimitSize" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DBUpgrade" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DBLog" Type="System.Byte" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DBAsync" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DBJournal" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
