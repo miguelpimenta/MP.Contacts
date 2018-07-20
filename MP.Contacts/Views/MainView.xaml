@@ -180,7 +180,7 @@
 							<StackPanel>
 								<Button Command="{Binding TestCmd}" Content="Hello World" />
 								<Separator />
-								<Button Command="{Binding CloseCmd}" Content="exit" />
+								<Button Command="{Binding CloseCmd}" Content="Exit" />
 							</StackPanel>
 						</materialDesign:PopupBox>
 						<TextBlock
