@@ -100,6 +100,7 @@
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\Log2Txt.cs" />
     <Compile Include="ViewModels\ContactsViewModel.cs" />
+    <Compile Include="ViewModels\ContactViewModel.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
