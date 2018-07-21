@@ -74,14 +74,14 @@ namespace MP.Contacts.DAL
 
         ObservableCollection<Person> ILitedbDAL.ListPersons(string search, string empty1, string empty2, string empty3)
         {
-            string[] searchWords = search.ToUpper().Split(' ');
+            var searchWords = search.ToUpper().Split(' ');
             using (var db = new LiteDatabase(LitedbConn.ConnString()))
             {
                 var personsTbl = db.GetCollection<Person>(PersonsTable);
                 try
                 {
                     var results = personsTbl.FindAll()
-                        .Where(x => searchWords.All(x.Name.ToUpper().Contains))
+                        .Where(x => searchWords.All(x.Name.ToUpper().Contains) && searchWords.All(x.Company.ToUpper().Contains))
                         .OrderBy(x => x.Name)
                         .Take(250);
                     return results.AsEnumerable().ToObservableCollection<Person>();

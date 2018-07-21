@@ -6,15 +6,15 @@ namespace MP.Contacts.DAL
     {
         public static string ConnString()
         {
-            StringBuilder sb = new StringBuilder();
+            System.IO.Directory.CreateDirectory(Settings.Default.DBPath);
+
+            var sb = new StringBuilder();
             if (!string.IsNullOrEmpty(Settings.Default.DBPath))
             {
                 sb.Append(Settings.Default.DBPath).Append("\\");
             }
             sb.Append(Settings.Default.DBFilename);
             return sb.ToString();
-
-            //return "ICDCodes.db4";
         }
     }
 }

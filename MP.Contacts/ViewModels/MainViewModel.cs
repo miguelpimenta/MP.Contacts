@@ -21,9 +21,14 @@ namespace MP.Contacts.ViewModels
         public ICommand RefreshCmd { get; }
         public ICommand TestCmd { get; }
         public ICommand CloseCmd { get; }
-
         public ICommand AboutFlyoutCmd { get; }
         public ICommand SettingsFlyoutCmd { get; }
+        public ICommand NewContactFlyoutCmd { get; }
+
+        #region Singleton
+
+        private static MainViewModel instance = null;
+        private static object lockThis = new object();
 
         public MainViewModel()
         {
@@ -36,6 +41,7 @@ namespace MP.Contacts.ViewModels
             TestCmd = new RelayCommandAsync(TestAsync);
             AboutFlyoutCmd = new RelayCommand(ShowFlyoutAbout);
             SettingsFlyoutCmd = new RelayCommand(ShowFlyoutSettings);
+            NewContactFlyoutCmd = new RelayCommand(ShowFlyoutNewContact);
 
             MenuItem home = new MenuItem()
             {
@@ -66,7 +72,7 @@ namespace MP.Contacts.ViewModels
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                 },
-                Content = new ContactsView()
+                Content = new PersonsView()
             };
 
             MenuItems = new[]
@@ -76,12 +82,30 @@ namespace MP.Contacts.ViewModels
             };
         }
 
+        public static MainViewModel Instance
+        {
+            get
+            {
+                lock (lockThis)
+                {
+                    if (instance == null)
+                    {
+                        instance = new MainViewModel();
+                    }
+                    return instance;
+                }
+            }
+        }
+
+        #endregion Singleton
+
         #region Props
 
         public MenuItem[] MenuItems { get; set; }
 
         private bool _flyoutAbout;
         private bool _flyoutSettings;
+        private bool _flyoutNewContact;
         private string _title = Settings.Default.AppName;
 
         public bool FlyoutAbout
@@ -94,6 +118,12 @@ namespace MP.Contacts.ViewModels
         {
             get => _flyoutSettings;
             set { _flyoutSettings = value; RaisePropertyChanged(nameof(FlyoutSettings)); }
+        }
+
+        public bool FlyoutNewContact
+        {
+            get => _flyoutNewContact;
+            set { _flyoutNewContact = value; RaisePropertyChanged(nameof(FlyoutNewContact)); }
         }
 
         public string Title
@@ -114,10 +144,15 @@ namespace MP.Contacts.ViewModels
             FlyoutSettings = (bool)obj;
         }
 
+        internal void ShowFlyoutNewContact(object obj)
+        {
+            FlyoutNewContact = (bool)obj;
+        }
+
         private async Task TestAsync(object arg)
         {
             await _dlgCoord.ShowMessageAsync(this, "Info!", "Hello World!!!",
-                MessageDialogStyle.Affirmative, _dlgSet.DialogDefaultSettings).ConfigureAwait(false);
+                MessageDialogStyle.Affirmative, _dlgSet.DlgDefaultSets).ConfigureAwait(false);
         }
 
         private void CloseApp()

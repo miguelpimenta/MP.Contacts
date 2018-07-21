@@ -2,7 +2,7 @@
 
 namespace MP.Contacts.Support
 {
-    public class DialogSettings
+    public sealed class DialogSettings
     {
         #region Singleton
 
@@ -31,7 +31,7 @@ namespace MP.Contacts.Support
 
         #endregion Singleton
 
-        public MetroDialogSettings DialogDefaultSettings => new MetroDialogSettings()
+        public MetroDialogSettings DlgDefaultSets => new MetroDialogSettings()
         {
             AffirmativeButtonText = "OK",
             DialogTitleFontSize = 32,
@@ -41,7 +41,7 @@ namespace MP.Contacts.Support
             ColorScheme = MetroDialogColorScheme.Theme,
         };
 
-        public MetroDialogSettings DialogErrorSettings => new MetroDialogSettings()
+        public MetroDialogSettings DlgErrorSets => new MetroDialogSettings()
         {
             AffirmativeButtonText = "OK",
             DialogTitleFontSize = 32,
@@ -51,7 +51,7 @@ namespace MP.Contacts.Support
             ColorScheme = MetroDialogColorScheme.Inverted,
         };
 
-        public MetroDialogSettings DialogYesNoSettings => new MetroDialogSettings()
+        public MetroDialogSettings DlgYesNoSets => new MetroDialogSettings()
         {
             AffirmativeButtonText = "Sim",
             NegativeButtonText = "Não",

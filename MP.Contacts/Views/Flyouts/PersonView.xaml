@@ -1,0 +1,191 @@
+﻿<UserControl
+	x:Class="MP.Contacts.Views.Flyouts.PersonView"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+	xmlns:local="clr-namespace:MP.Contacts.Views"
+	xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+	xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Width="Auto"
+	Height="Auto"
+	dialog:DialogParticipation.Register="{Binding}"
+	Background="{DynamicResource MaterialDesignPaper}"
+	FontFamily="{DynamicResource MaterialDesignFont}"
+	FontSize="16"
+	Foreground="Black"
+	TextElement.FontSize="13"
+	TextElement.FontWeight="Regular"
+	TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+	TextOptions.TextFormattingMode="Ideal"
+	TextOptions.TextRenderingMode="Auto"
+	mc:Ignorable="d">
+
+	<Grid Width="Auto" Background="{DynamicResource GradientColorDefault}">
+		<StackPanel VerticalAlignment="Center" Orientation="Vertical">
+			<TextBlock
+				Margin="0,20,0,0"
+				HorizontalAlignment="Center"
+				FontSize="24"
+				FontWeight="Bold"
+				Text="New Contact" />
+
+			<TextBox
+				Width="500"
+				Height="50"
+				Margin="50,0,50,10"
+				materialDesign:HintAssist.Hint="Name"
+				materialDesign:HintAssist.IsFloating="True"
+				AcceptsReturn="True"
+				FontSize="16"
+				Text="{Binding Path=Person.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+				TextWrapping="Wrap" />
+			<TextBox
+				Width="500"
+				Height="50"
+				Margin="50,0,50,10"
+				materialDesign:HintAssist.Hint="Company"
+				materialDesign:HintAssist.IsFloating="True"
+				AcceptsReturn="True"
+				FontSize="16"
+				Text="{Binding Path=Person.Company, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+				TextWrapping="Wrap" />
+			<StackPanel
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+				Orientation="Horizontal">
+				<TextBox
+					Width="125"
+					Height="50"
+					Margin="50,0,10,10"
+					HorizontalContentAlignment="Center"
+					materialDesign:HintAssist.Hint="Phone"
+					materialDesign:HintAssist.IsFloating="True"
+					AcceptsReturn="True"
+					FontSize="16"
+					Text="{Binding Path=Person.Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					TextInput="OnlyDigits"
+					TextWrapping="Wrap" />
+				<TextBox
+					Width="125"
+					Height="50"
+					Margin="8,0,10,10"
+					HorizontalContentAlignment="Center"
+					materialDesign:HintAssist.Hint="CellPhone"
+					materialDesign:HintAssist.IsFloating="True"
+					AcceptsReturn="True"
+					FontSize="16"
+					Text="{Binding Path=Person.CellPhone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					TextInput="OnlyDigits"
+					TextWrapping="Wrap" />
+				<TextBox
+					Width="215"
+					Height="50"
+					Margin="7,0,50,10"
+					HorizontalContentAlignment="Center"
+					materialDesign:HintAssist.Hint="Email"
+					materialDesign:HintAssist.IsFloating="True"
+					AcceptsReturn="True"
+					FontSize="16"
+					Text="{Binding Path=Person.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					TextWrapping="Wrap" />
+			</StackPanel>
+
+			<TextBox
+				Width="500"
+				Height="50"
+				materialDesign:HintAssist.Hint="Address"
+				materialDesign:HintAssist.IsFloating="True"
+				AcceptsReturn="True"
+				FontSize="16"
+				Text="{Binding Path=Person.Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+				TextWrapping="Wrap" />
+			<StackPanel
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+				Orientation="Horizontal">
+				<TextBox
+					Width="300"
+					Height="50"
+					Margin="50,0,10,10"
+					materialDesign:HintAssist.Hint="Locality"
+					materialDesign:HintAssist.IsFloating="True"
+					AcceptsReturn="True"
+					FontSize="16"
+					Text="{Binding Path=Person.Locality, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					TextWrapping="Wrap" />
+				<TextBox
+					Width="100"
+					Height="50"
+					Margin="7,0,50,10"
+					HorizontalContentAlignment="Center"
+					materialDesign:HintAssist.Hint="Postal Code"
+					materialDesign:HintAssist.IsFloating="True"
+					AcceptsReturn="True"
+					FontSize="16"
+					Text="{Binding Path=Person.PostalCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					TextWrapping="Wrap" />
+			</StackPanel>
+
+			<TextBox
+				Width="500"
+				Height="80"
+				Margin="50,0,50,10"
+				VerticalContentAlignment="Top"
+				materialDesign:HintAssist.Hint="Obs"
+				materialDesign:HintAssist.IsFloating="True"
+				AcceptsReturn="True"
+				FontSize="16"
+				Text="{Binding Person.Obs, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+				TextWrapping="Wrap" />
+
+			<WrapPanel
+				Height="46"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+				Orientation="Horizontal">
+				<Button
+					Width="Auto"
+					Height="Auto"
+					Background="Transparent"
+					BorderThickness="0"
+					Command="{Binding SaveCmd}"
+					CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:Flyout}}"
+					ToolTip="Gravar">
+					<StackPanel Height="Auto" Orientation="Horizontal">
+						<materialDesign:PackIcon
+							Width="Auto"
+							Height="Auto"
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"
+							Foreground="{StaticResource GradientColorBlue}"
+							Kind="ContentSave" />
+					</StackPanel>
+				</Button>
+
+				<Button
+					Width="Auto"
+					Height="Auto"
+					Margin="10,0,0,0"
+					Background="Transparent"
+					BorderThickness="0"
+					Command="{Binding CancelCmd}"
+					CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:Flyout}}"
+					ToolTip="Cancel">
+					<StackPanel Height="auto" Orientation="Horizontal">
+						<materialDesign:PackIcon
+							Width="Auto"
+							Height="Auto"
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"
+							Foreground="{StaticResource GradientColorRed}"
+							Kind="Close" />
+					</StackPanel>
+				</Button>
+			</WrapPanel>
+			<TextBlock Height="20" />
+		</StackPanel>
+	</Grid>
+</UserControl>

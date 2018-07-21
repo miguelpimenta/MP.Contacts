@@ -1,9 +1,10 @@
 ﻿<UserControl
-	x:Class="MP.Contacts.Views.ContactsView"
+	x:Class="MP.Contacts.Views.PersonsView"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+	xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
 	xmlns:local="clr-namespace:MP.Contacts.Views"
 	xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 	xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
@@ -23,6 +24,11 @@
 	TextOptions.TextFormattingMode="Ideal"
 	TextOptions.TextRenderingMode="Auto"
 	mc:Ignorable="d">
+	<i:Interaction.Triggers>
+		<i:EventTrigger EventName="Loaded">
+			<i:InvokeCommandAction Command="{Binding LoadedCmd}" />
+		</i:EventTrigger>
+	</i:Interaction.Triggers>
 	<Grid Background="{StaticResource GradientColorDefault}">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="200" />
@@ -35,15 +41,20 @@
 		<StackPanel
 			Grid.Row="0"
 			Grid.Column="1"
-			Margin="0,0,0,0"
+			Margin="10,0,0,0"
 			Orientation="Horizontal">
 			<TextBox
-				Width="100"
+				Width="200"
 				Height="Auto"
 				Margin="0,0,0,10"
 				materialDesign:HintAssist.Hint="Search"
 				materialDesign:HintAssist.IsFloating="True"
-				Text="{Binding SearchTerms, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+				Text="{Binding SearchTerms, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+				<TextBox.InputBindings>
+					<KeyBinding Key="Enter" Command="{Binding RefreshCmd}" />
+					<KeyBinding Key="Return" Command="{Binding RefreshCmd}" />
+				</TextBox.InputBindings>
+			</TextBox>
 			<Button
 				Width="Auto"
 				Margin="0,0,0,0"
@@ -60,6 +71,24 @@
 						VerticalAlignment="Stretch"
 						Foreground="Blue"
 						Kind="Refresh" />
+				</StackPanel>
+			</Button>
+			<Button
+				Width="Auto"
+				Margin="0,0,0,0"
+				Background="Transparent"
+				BorderThickness="0"
+				Command="{Binding NewContactCmd}"
+				ToolTip="refresh">
+				<StackPanel Height="Auto" Orientation="Horizontal">
+					<materialDesign:PackIcon
+						Width="auto"
+						Height="auto"
+						Margin="0,0,0,0"
+						HorizontalAlignment="Stretch"
+						VerticalAlignment="Stretch"
+						Foreground="Blue"
+						Kind="AccountPlus" />
 				</StackPanel>
 			</Button>
 		</StackPanel>
@@ -81,6 +110,48 @@
 		<DataGrid
 			Grid.Row="1"
 			Grid.Column="1"
-			Background="Transparent" />
+			Margin="10,0,0,0"
+			AutoGenerateColumns="False"
+			Background="Transparent"
+			CanUserAddRows="False"
+			CanUserDeleteRows="False"
+			GridLinesVisibility="Horizontal"
+			HorizontalGridLinesBrush="{StaticResource DdgGridLineColor}"
+			ItemsSource="{Binding Path=Persons}"
+			MinRowHeight="30"
+			RowBackground="Transparent"
+			ScrollViewer.HorizontalScrollBarVisibility="Auto"
+			ScrollViewer.VerticalScrollBarVisibility="Auto">
+			<DataGrid.CellStyle>
+				<StaticResource ResourceKey="DataGridContentCellCentering" />
+			</DataGrid.CellStyle>
+			<DataGrid.Columns>
+				<DataGridTextColumn
+					Width="Auto"
+					MinWidth="200"
+					Binding="{Binding Name}"
+					Header="Name" />
+				<DataGridTextColumn
+					Width="Auto"
+					MinWidth="100"
+					Binding="{Binding Company}"
+					Header="Company" />
+				<DataGridTextColumn
+					Width="Auto"
+					MinWidth="80"
+					Binding="{Binding Phone}"
+					Header="Phone" />
+				<DataGridTextColumn
+					Width="Auto"
+					MinWidth="80"
+					Binding="{Binding CellPhone}"
+					Header="CellPhone" />
+				<DataGridTextColumn
+					Width="Auto"
+					MinWidth="80"
+					Binding="{Binding Email}"
+					Header="Email" />
+			</DataGrid.Columns>
+		</DataGrid>
 	</Grid>
 </UserControl>
