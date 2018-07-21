@@ -78,7 +78,7 @@
 				Margin="0,0,0,0"
 				Background="Transparent"
 				BorderThickness="0"
-				Command="{Binding NewContactCmd}"
+				Command="{Binding NewPersonCmd}"
 				ToolTip="refresh">
 				<StackPanel Height="Auto" Orientation="Horizontal">
 					<materialDesign:PackIcon

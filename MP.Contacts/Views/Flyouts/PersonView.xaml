@@ -12,7 +12,6 @@
 	Width="Auto"
 	Height="Auto"
 	dialog:DialogParticipation.Register="{Binding}"
-	Background="{DynamicResource MaterialDesignPaper}"
 	FontFamily="{DynamicResource MaterialDesignFont}"
 	FontSize="16"
 	Foreground="Black"
@@ -23,8 +22,11 @@
 	TextOptions.TextRenderingMode="Auto"
 	mc:Ignorable="d">
 
-	<Grid Width="Auto" Background="{DynamicResource GradientColorDefault}">
-		<StackPanel VerticalAlignment="Center" Orientation="Vertical">
+	<Grid Width="600" Background="Transparent">
+		<StackPanel
+			VerticalAlignment="Center"
+			Background="Transparent"
+			Orientation="Vertical">
 			<TextBlock
 				Margin="0,20,0,0"
 				HorizontalAlignment="Center"
