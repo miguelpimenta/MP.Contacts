@@ -15,7 +15,7 @@ using System.Windows.Threading;
 
 namespace MP.Contacts.ViewModels
 {
-    public class ContactViewModel
+    public class PersonViewModel
     {
         private readonly IDialogCoordinator _dlgCoord;
         private readonly Dispatcher _dispatcher;
@@ -36,7 +36,7 @@ namespace MP.Contacts.ViewModels
 
         #endregion props
 
-        public ContactViewModel()
+        public PersonViewModel()
         {
             _dlgCoord = DialogCoordinator.Instance;
             _dispatcher = Application.Current.Dispatcher;

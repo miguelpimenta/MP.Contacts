@@ -6,14 +6,14 @@ using System.Windows.Input;
 namespace MP.Contacts.Views.Flyouts
 {
     /// <summary>
-    /// Interaction logic for ContactView.xaml
+    /// Interaction logic for PersonView.xaml
     /// </summary>
-    public partial class ContactView : UserControl
+    public partial class PersonView : UserControl
     {
-        public ContactView()
+        public PersonView()
         {
             InitializeComponent();
-            DataContext = new ContactViewModel();
+            DataContext = new PersonViewModel();
         }
 
         private void OnlyDigits(object sender, TextCompositionEventArgs e)

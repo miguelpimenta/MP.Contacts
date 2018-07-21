@@ -4,14 +4,14 @@ using System.Windows.Controls;
 namespace MP.Contacts.Views
 {
     /// <summary>
-    /// Interaction logic for ContactsViewView.xaml
+    /// Interaction logic for PersonsViewView.xaml
     /// </summary>
-    public partial class ContactsView : UserControl
+    public partial class PersonsView : UserControl
     {
-        public ContactsView()
+        public PersonsView()
         {
             InitializeComponent();
-            DataContext = ContactsViewModel.Instance;
+            DataContext = PersonsViewModel.Instance;
         }
     }
 }

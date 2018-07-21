@@ -72,7 +72,7 @@ namespace MP.Contacts.ViewModels
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                 },
-                Content = new ContactsView()
+                Content = new PersonsView()
             };
 
             MenuItems = new[]
