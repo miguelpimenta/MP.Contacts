@@ -81,7 +81,7 @@ namespace MP.Contacts.DAL
                 try
                 {
                     var results = personsTbl.FindAll()
-                        .Where(x => searchWords.All(x.Name.ToUpper().Contains) && searchWords.All(x.Company.ToUpper().Contains))
+                        .Where(x => searchWords.All(x.Name.ToUpper().Contains) || searchWords.All(x.Company.ToUpper().Contains))
                         .OrderBy(x => x.Name)
                         .Take(250);
                     return results.AsEnumerable().ToObservableCollection<Person>();
