@@ -99,6 +99,7 @@
     <Compile Include="Support\StaticResourceConverter.cs" />
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\Log2Txt.cs" />
+    <Compile Include="Utils\MsgText.cs" />
     <Compile Include="ViewModels\ContactsViewModel.cs" />
     <Compile Include="ViewModels\ContactViewModel.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
