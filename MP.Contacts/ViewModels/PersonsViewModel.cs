@@ -3,6 +3,7 @@ using MahApps.Metro.Controls.Dialogs;
 using MP.Contacts.DAL;
 using MP.Contacts.Models;
 using MP.Contacts.Support;
+using MP.Contacts.Utils;
 using MP.Contacts.Views;
 using MP.Contacts.Views.Flyouts;
 using System;
@@ -25,7 +26,9 @@ namespace MP.Contacts.ViewModels
 
         public ICommand LoadedCmd { get; }
         public ICommand RefreshCmd { get; }
-        public ICommand NewContactCmd { get; }
+        public ICommand NewPersonCmd { get; }
+        public ICommand EditPersonCmd { get; }
+        public ICommand OpenPersonCmd { get; }
 
         #region Singleton
 
@@ -40,7 +43,9 @@ namespace MP.Contacts.ViewModels
 
             LoadedCmd = new RelayCommandAsync(LoadedAsync);
             RefreshCmd = new RelayCommandAsync(RefreshAsync);
-            NewContactCmd = new RelayCommandAsync(NewContactAsync);
+            NewPersonCmd = new RelayCommandAsync(NewPersonAsync);
+            EditPersonCmd = new RelayCommandAsync(EditPerson);
+            OpenPersonCmd = new RelayCommandAsync(OpenPerson);
         }
 
         public static PersonsViewModel Instance
@@ -63,11 +68,18 @@ namespace MP.Contacts.ViewModels
         #region Props
 
         private string _searchTerms = string.Empty;
+        private Person _selectedPerson = null;
 
         public string SearchTerms
         {
             get => _searchTerms;
             set { _searchTerms = value; RaisePropertyChanged(nameof(SearchTerms)); }
+        }
+
+        public Person SelectedPerson
+        {
+            get => _selectedPerson;
+            set { _selectedPerson = value; RaisePropertyChanged(nameof(SelectedPerson)); }
         }
 
         #endregion Props
@@ -100,7 +112,7 @@ namespace MP.Contacts.ViewModels
             }).ConfigureAwait(false);
         }
 
-        private async Task NewContactAsync(object arg)
+        private async Task NewPersonAsync(object arg)
         {
             await Task.Run(() =>
             {
@@ -112,6 +124,30 @@ namespace MP.Contacts.ViewModels
                     flyout.IsOpen = !flyout.IsOpen;
                 }));
             }).ConfigureAwait(false);
+        }
+
+        private Task EditPerson(object arg)
+        {
+            throw new NotImplementedException();
+        }
+
+        private async Task OpenPerson(object arg)
+        {
+            if (arg != null)
+            {
+                try
+                {
+                    if (arg is Person person)
+                    {
+                        SelectedPerson = person;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log2Txt.Instance.ErrorLog(ex.ToString());
+                    throw;
+                }
+            }
         }
     }
 }

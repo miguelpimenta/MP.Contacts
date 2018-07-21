@@ -97,13 +97,15 @@
 				<TextBox
 					materialDesign:HintAssist.Hint="Name"
 					materialDesign:HintAssist.IsFloating="True"
-					IsReadOnly="True" />
+					IsReadOnly="True"
+					Text="{Binding Path=SelectedPerson.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 			</StackPanel>
 			<StackPanel Margin="5,5,5,5">
 				<TextBox
 					materialDesign:HintAssist.Hint="Company"
 					materialDesign:HintAssist.IsFloating="True"
-					IsReadOnly="True" />
+					IsReadOnly="True"
+					Text="{Binding Path=SelectedPerson.Company, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 			</StackPanel>
 		</StackPanel>
 
@@ -118,13 +120,24 @@
 			GridLinesVisibility="Horizontal"
 			HorizontalGridLinesBrush="{StaticResource DdgGridLineColor}"
 			ItemsSource="{Binding Path=Persons}"
-			MinRowHeight="30"
-			RowBackground="Transparent"
 			ScrollViewer.HorizontalScrollBarVisibility="Auto"
 			ScrollViewer.VerticalScrollBarVisibility="Auto">
 			<DataGrid.CellStyle>
 				<StaticResource ResourceKey="DataGridContentCellCentering" />
 			</DataGrid.CellStyle>
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="MouseLeftButtonUp">
+					<i:InvokeCommandAction Command="{Binding OpenPersonCmd}" CommandParameter="{Binding Path=SelectedItem, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}" />
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+			<DataGrid.RowStyle>
+				<Style TargetType="{x:Type DataGridRow}">
+					<Setter Property="MinHeight" Value="30" />
+					<Setter Property="Background" Value="Transparent" />
+					<Setter Property="FontSize" Value="14" />
+					<Setter Property="Foreground" Value="Black" />
+				</Style>
+			</DataGrid.RowStyle>
 			<DataGrid.Columns>
 				<DataGridTextColumn
 					Width="Auto"
