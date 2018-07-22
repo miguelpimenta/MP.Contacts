@@ -23,7 +23,7 @@ namespace MP.Contacts.ViewModels
         public ICommand CloseCmd { get; }
         public ICommand AboutFlyoutCmd { get; }
         public ICommand SettingsFlyoutCmd { get; }
-        public ICommand NewContactFlyoutCmd { get; }
+        //public ICommand NewContactFlyoutCmd { get; }
 
         #region Singleton
 
@@ -41,7 +41,7 @@ namespace MP.Contacts.ViewModels
             TestCmd = new RelayCommandAsync(TestAsync);
             AboutFlyoutCmd = new RelayCommand(ShowFlyoutAbout);
             SettingsFlyoutCmd = new RelayCommand(ShowFlyoutSettings);
-            NewContactFlyoutCmd = new RelayCommand(ShowFlyoutNewContact);
+            //NewContactFlyoutCmd = new RelayCommand(ShowFlyoutNewContact);
 
             MenuItem home = new MenuItem()
             {
@@ -144,10 +144,10 @@ namespace MP.Contacts.ViewModels
             FlyoutSettings = (bool)obj;
         }
 
-        internal void ShowFlyoutNewContact(object obj)
-        {
-            FlyoutNewContact = (bool)obj;
-        }
+        //internal void ShowFlyoutNewContact(object obj)
+        //{
+        //    FlyoutNewContact = (bool)obj;
+        //}
 
         private async Task TestAsync(object arg)
         {
