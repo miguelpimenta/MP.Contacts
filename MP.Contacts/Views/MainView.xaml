@@ -217,10 +217,17 @@
 					<ScrollViewer
 						Grid.Row="1"
 						Padding="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.MarginRequirement}"
+						HorizontalScrollBarVisibility="Auto"
+						VerticalScrollBarVisibility="Auto">
+						<ContentControl Content="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.Content}" />
+					</ScrollViewer>
+					<!--<ScrollViewer
+						Grid.Row="1"
+						Padding="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.MarginRequirement}"
 						HorizontalScrollBarVisibility="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.HorizontalScrollBarVisibilityRequirement}"
 						VerticalScrollBarVisibility="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.VerticalScrollBarVisibilityRequirement}">
 						<ContentControl Content="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.Content}" />
-					</ScrollViewer>
+					</ScrollViewer>-->
 
 					<materialDesign:Snackbar
 						x:Name="MainSnackbar"

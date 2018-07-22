@@ -93,19 +93,44 @@
 			</Button>
 		</StackPanel>
 		<StackPanel Grid.Row="1" Orientation="Vertical">
-			<StackPanel Margin="5,5,5,5">
+			<StackPanel Margin="5,5,5,5" Orientation="Vertical">
 				<TextBox
 					materialDesign:HintAssist.Hint="Name"
 					materialDesign:HintAssist.IsFloating="True"
 					IsReadOnly="True"
-					Text="{Binding Path=SelectedPerson.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-			</StackPanel>
-			<StackPanel Margin="5,5,5,5">
+					Text="{Binding Path=SelectedPerson.Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 				<TextBox
 					materialDesign:HintAssist.Hint="Company"
 					materialDesign:HintAssist.IsFloating="True"
 					IsReadOnly="True"
-					Text="{Binding Path=SelectedPerson.Company, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+					Text="{Binding Path=SelectedPerson.Company, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+			</StackPanel>
+			<StackPanel Margin="5,5,5,5" Orientation="Horizontal">
+				<TextBox
+					Width="90"
+					materialDesign:HintAssist.Hint="Phone"
+					materialDesign:HintAssist.IsFloating="True"
+					IsReadOnly="True"
+					Text="{Binding Path=SelectedPerson.Phone, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+				<TextBox
+					Width="90"
+					Margin="10,0,0,0"
+					materialDesign:HintAssist.Hint="CellPhone"
+					materialDesign:HintAssist.IsFloating="True"
+					IsReadOnly="True"
+					Text="{Binding Path=SelectedPerson.CellPhone, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+			</StackPanel>
+			<StackPanel Margin="5,5,5,5" Orientation="Vertical">
+				<TextBox
+					materialDesign:HintAssist.Hint="Email"
+					materialDesign:HintAssist.IsFloating="True"
+					IsReadOnly="True"
+					Text="{Binding Path=SelectedPerson.Email, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+				<TextBox
+					materialDesign:HintAssist.Hint="Website"
+					materialDesign:HintAssist.IsFloating="True"
+					IsReadOnly="True"
+					Text="{Binding Path=SelectedPerson.Website, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 			</StackPanel>
 		</StackPanel>
 
