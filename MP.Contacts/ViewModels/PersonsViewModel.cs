@@ -44,7 +44,7 @@ namespace MP.Contacts.ViewModels
             LoadedCmd = new RelayCommandAsync(LoadedAsync);
             RefreshCmd = new RelayCommandAsync(RefreshAsync);
             NewPersonCmd = new RelayCommandAsync(NewPersonAsync);
-            EditPersonCmd = new RelayCommandAsync(EditPerson);
+            EditPersonCmd = new RelayCommandAsync(EditPersonAsync);
             OpenPersonCmd = new RelayCommandAsync(OpenPerson);
         }
 
@@ -118,17 +118,42 @@ namespace MP.Contacts.ViewModels
             {
                 _dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
                 {
-                    var obj = Application.Current.MainWindow.FindName("FlyoutNewContact");
+                    var obj = Application.Current.MainWindow.FindName("FlyoutContainer");
                     var flyout = (Flyout)obj;
                     flyout.Content = new PersonView();
+                    flyout.CloseButtonVisibility = Visibility.Hidden;
+                    flyout.AnimateOpacity = true;
+                    flyout.AreAnimationsEnabled = true;
+                    flyout.AnimateOnPositionChange = true;
+                    flyout.IsModal = true;
+                    flyout.Position = Position.Top;
+                    flyout.Theme = FlyoutTheme.Accent;
+                    flyout.IsPinned = true;
                     flyout.IsOpen = !flyout.IsOpen;
                 }));
             }).ConfigureAwait(false);
         }
 
-        private Task EditPerson(object arg)
+        private async Task EditPersonAsync(object arg)
         {
-            throw new NotImplementedException();
+            await Task.Run(() =>
+            {
+                _dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    var obj = Application.Current.MainWindow.FindName("FlyoutContainer");
+                    var flyout = (Flyout)obj;
+                    flyout.Content = new PersonView();
+                    flyout.CloseButtonVisibility = Visibility.Hidden;
+                    flyout.AnimateOpacity = true;
+                    flyout.AreAnimationsEnabled = true;
+                    flyout.AnimateOnPositionChange = true;
+                    flyout.IsModal = true;
+                    flyout.Position = Position.Bottom;
+                    flyout.Theme = FlyoutTheme.Accent;
+                    flyout.IsPinned = true;
+                    flyout.IsOpen = !flyout.IsOpen;
+                }));
+            }).ConfigureAwait(false);
         }
 
         private async Task OpenPerson(object arg)

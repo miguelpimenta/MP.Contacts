@@ -109,8 +109,10 @@
 				Theme="Accent"
 				TitleVisibility="Visible" />
 
-			<controls:Flyout
-				x:Name="FlyoutNewContact"
+			<controls:Flyout x:Name="FlyoutContainer" />
+
+			<!--<controls:Flyout
+				x:Name="FlyoutTop"
 				Width="Auto"
 				AnimateOnPositionChange="True"
 				AnimateOpacity="True"
@@ -122,9 +124,7 @@
 				IsPinned="True"
 				Position="Top"
 				Theme="Accent"
-				TitleVisibility="Visible">
-				<!--<Flyouts:ContactView />-->
-			</controls:Flyout>
+				TitleVisibility="Visible">-->
 		</controls:FlyoutsControl>
 	</controls:MetroWindow.Flyouts>
 
