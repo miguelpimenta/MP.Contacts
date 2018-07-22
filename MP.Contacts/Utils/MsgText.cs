@@ -34,5 +34,6 @@
         public string PleaseWait { get; set; } = "Por favor Aguarde";
         public string Waiting { get; set; } = "A processar informação...";
         public string Loading { get; set; } = "A carregar informação...";
+        public string SaveSuccess { get; set; } = "Gravado com sucesso.";
     }
 }

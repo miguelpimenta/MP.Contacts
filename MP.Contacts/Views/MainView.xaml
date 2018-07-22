@@ -141,7 +141,7 @@
 	<materialDesign:DialogHost Identifier="RootDialog" SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
 		<materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
 			<materialDesign:DrawerHost.LeftDrawerContent>
-				<DockPanel MinWidth="212">
+				<DockPanel MinWidth="220">
 					<ToggleButton
 						Margin="15"
 						HorizontalAlignment="Right"
@@ -153,7 +153,7 @@
 						Margin="0,0,0,0"
 						ItemsSource="{Binding MenuItems}"
 						PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp"
-						SelectedIndex="0">
+						SelectedIndex="1">
 						<ListBox.ItemTemplate>
 							<DataTemplate>
 								<Grid Height="68">
@@ -221,17 +221,17 @@
 						VerticalScrollBarVisibility="Auto">
 						<ContentControl Content="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.Content}" />
 					</ScrollViewer>
-					<!--<ScrollViewer
-						Grid.Row="1"
-						Padding="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.MarginRequirement}"
-						HorizontalScrollBarVisibility="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.HorizontalScrollBarVisibilityRequirement}"
-						VerticalScrollBarVisibility="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.VerticalScrollBarVisibilityRequirement}">
-						<ContentControl Content="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.Content}" />
-					</ScrollViewer>-->
 
 					<materialDesign:Snackbar
-						x:Name="MainSnackbar"
+						x:Name="MainViewSnackbar"
 						Grid.Row="1"
+						Width="Auto"
+						Height="Auto"
+						Margin="20,20,20,20"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Bottom"
+						HorizontalContentAlignment="Center"
+						VerticalContentAlignment="Center"
 						MessageQueue="{materialDesign:MessageQueue}" />
 				</Grid>
 			</DockPanel>

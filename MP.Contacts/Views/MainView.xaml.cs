@@ -25,22 +25,21 @@ namespace MP.Contacts.Views
     /// </summary>
     public partial class MainView : MetroWindow
     {
-        public static Snackbar Snackbar;
-
         public MainView()
         {
             InitializeComponent();
             DataContext = new MainViewModel();
+            CancellationToken cancelToken = new CancellationToken();
+            TaskCreationOptions taskCreatOpt = new TaskCreationOptions();
 
             Task.Factory.StartNew(() =>
             {
+                MainViewSnackbar.MessageQueue.Enqueue("Welcome");
                 Thread.Sleep(2500);
-            }).ContinueWith(t =>
+            }, cancelToken, taskCreatOpt, TaskScheduler.FromCurrentSynchronizationContext()).ContinueWith(t =>
             {
-                MainSnackbar.MessageQueue.Enqueue("Welcome");
+                MainViewSnackbar.MessageQueue.Enqueue("To Contacts App");
             }, TaskScheduler.FromCurrentSynchronizationContext());
-
-            Snackbar = MainSnackbar;
         }
 
         private void UIElement_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)

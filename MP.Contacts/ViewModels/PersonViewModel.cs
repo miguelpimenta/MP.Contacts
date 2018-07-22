@@ -5,9 +5,7 @@ using MP.Contacts.Models;
 using MP.Contacts.Support;
 using MP.Contacts.Utils;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -93,8 +91,9 @@ namespace MP.Contacts.ViewModels
                 }
             }).ConfigureAwait(false);
             await ctrl.CloseAsync().ConfigureAwait(false);
-            await _dlgCoord.ShowMessageAsync(this, _msgTxt.Info, "Inserido com sucesso.",
+            await _dlgCoord.ShowMessageAsync(this, _msgTxt.Info, _msgTxt.SaveSuccess,
                 MessageDialogStyle.Affirmative, _dlgSet.DlgDefaultSets).ConfigureAwait(false);
+
             Cancel(arg);
         }
 
