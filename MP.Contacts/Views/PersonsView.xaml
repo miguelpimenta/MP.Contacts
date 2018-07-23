@@ -31,7 +31,7 @@
 	</i:Interaction.Triggers>
 	<Grid Background="{StaticResource GradientColorDefault}">
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="200" />
+			<ColumnDefinition Width="250" />
 			<ColumnDefinition Width="500*" />
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
@@ -92,8 +92,17 @@
 				</StackPanel>
 			</Button>
 		</StackPanel>
-		<StackPanel Grid.Row="1" Orientation="Vertical">
-			<StackPanel Margin="5,5,5,5" Orientation="Vertical">
+		<StackPanel
+			Grid.Row="1"
+			Margin="10,0,10,0"
+			Orientation="Vertical">
+			<StackPanel HorizontalAlignment="Left">
+				<Image
+					Width="100"
+					Height="100"
+					Source="{Binding Path=SelectedPerson.Foto, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+			</StackPanel>
+			<StackPanel Orientation="Vertical">
 				<TextBox
 					materialDesign:HintAssist.Hint="Name"
 					materialDesign:HintAssist.IsFloating="True"
@@ -105,22 +114,26 @@
 					IsReadOnly="True"
 					Text="{Binding Path=SelectedPerson.Company, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 			</StackPanel>
-			<StackPanel Margin="5,5,5,5" Orientation="Horizontal">
+			<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
 				<TextBox
-					Width="90"
+					Width="110"
+					HorizontalContentAlignment="Center"
 					materialDesign:HintAssist.Hint="Phone"
 					materialDesign:HintAssist.IsFloating="True"
+					FontSize="14"
 					IsReadOnly="True"
 					Text="{Binding Path=SelectedPerson.Phone, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 				<TextBox
-					Width="90"
+					Width="110"
 					Margin="10,0,0,0"
+					HorizontalContentAlignment="Center"
 					materialDesign:HintAssist.Hint="CellPhone"
 					materialDesign:HintAssist.IsFloating="True"
+					FontSize="14"
 					IsReadOnly="True"
 					Text="{Binding Path=SelectedPerson.CellPhone, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 			</StackPanel>
-			<StackPanel Margin="5,5,5,5" Orientation="Vertical">
+			<StackPanel Orientation="Vertical">
 				<TextBox
 					materialDesign:HintAssist.Hint="Email"
 					materialDesign:HintAssist.IsFloating="True"

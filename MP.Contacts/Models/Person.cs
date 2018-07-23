@@ -14,7 +14,7 @@ namespace MP.Contacts.Models
 {
     public class Person : BindableBase
     {
-        private ObjectId _pkIdPerson = new ObjectId();
+        private ObjectId _pkIdPerson = ObjectId.NewObjectId();
         private string _name = string.Empty;
         private string _company = string.Empty;
         private string _address = string.Empty;
@@ -25,7 +25,7 @@ namespace MP.Contacts.Models
         private string _cellPhone = string.Empty;
         private string _webSite = string.Empty;
         private string _obs = string.Empty;
-        private bool _insertDate = true;
+        private DateTime _insertDate = DateTime.Now;
         private bool _active = true;
         private Binary _binary;
 
@@ -97,7 +97,7 @@ namespace MP.Contacts.Models
             set { _obs = value; RaisePropertyChanged(nameof(Obs)); }
         }
 
-        public bool InsertDate
+        public DateTime InsertDate
         {
             get => _insertDate;
             set { _insertDate = value; RaisePropertyChanged(nameof(InsertDate)); }
@@ -123,9 +123,9 @@ namespace MP.Contacts.Models
         {
             get
             {
-                if (Binary != null)
+                if (Binary?.FileBytes.Length > 50)
                 {
-                    ImageSourceConverter s = new ImageSourceConverter();
+                    var s = new ImageSourceConverter();
                     return (ImageSource)s.ConvertFrom(Binary.FileBytes);
                 }
                 else
@@ -134,7 +134,7 @@ namespace MP.Contacts.Models
                     {
                         Image img = Properties.Resources.User;
                         byte[] buffer;
-                        MemoryStream memoryStream = new MemoryStream();
+                        var memoryStream = new MemoryStream();
                         img.Save(memoryStream, ImageFormat.Png);
                         buffer = memoryStream.ToArray();
                         return buffer.ByteToImageSource();

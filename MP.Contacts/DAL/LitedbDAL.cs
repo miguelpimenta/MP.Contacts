@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LiteDB;
+﻿using LiteDB;
 using MP.Contacts.Models;
 using MP.Contacts.Utils;
+using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace MP.Contacts.DAL
 {
@@ -35,11 +32,25 @@ namespace MP.Contacts.DAL
             using (var db = new LiteDatabase(LitedbConn.ConnString()))
             {
                 var personsTbl = db.GetCollection<Person>(PersonsTable);
-                var binariesTbl = db.GetCollection<Binary>(BinariesTable);
                 try
                 {
                     personsTbl.Insert(person);
                     personsTbl.EnsureIndex(x => x.PkIdPerson);
+                    if (person.Binary.FileBytes.Length > 50)
+                    {
+                        var binariesTbl = db.GetCollection<Binary>(BinariesTable);
+                        try
+                        {
+                            binariesTbl.Insert(person.Binary);
+                            binariesTbl.EnsureIndex(x => x.PkIdBinary);
+                            return true;
+                        }
+                        catch (Exception ex)
+                        {
+                            Log2Txt.Instance.ErrorLog(ex.ToString());
+                            throw;
+                        }
+                    }
                     return true;
                 }
                 catch (Exception ex)
@@ -60,6 +71,25 @@ namespace MP.Contacts.DAL
                     personsTbl.Update(person);
                     personsTbl.EnsureIndex(x => x.PkIdPerson);
                     return true;
+                }
+                catch (Exception ex)
+                {
+                    Log2Txt.Instance.ErrorLog(ex.ToString());
+                    throw;
+                }
+            }
+        }
+
+        Person ILitedbDAL.ReadPerson(ObjectId id)
+        {
+            using (var db = new LiteDatabase(LitedbConn.ConnString()))
+            {
+                var personsTbl = db.GetCollection<Person>(PersonsTable);
+                try
+                {
+                    return personsTbl
+                        .Include(x => x.Binary)
+                        .FindById(id);
                 }
                 catch (Exception ex)
                 {
@@ -97,6 +127,46 @@ namespace MP.Contacts.DAL
         }
 
         #endregion Persons
+
+        #region Binaries
+
+        bool ILitedbDAL.InsertBinary(Binary binary)
+        {
+            using (var db = new LiteDatabase(LitedbConn.ConnString()))
+            {
+                var binariesTbl = db.GetCollection<Binary>(BinariesTable);
+                try
+                {
+                    binariesTbl.Insert(binary);
+                    binariesTbl.EnsureIndex(x => x.PkIdBinary);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Log2Txt.Instance.ErrorLog(ex.ToString());
+                    throw;
+                }
+            }
+        }
+
+        Binary ILitedbDAL.ReadBinary(ObjectId id)
+        {
+            using (var db = new LiteDatabase(LitedbConn.ConnString()))
+            {
+                var binariesTbl = db.GetCollection<Binary>(BinariesTable);
+                try
+                {
+                    return binariesTbl.FindById(id);
+                }
+                catch (Exception ex)
+                {
+                    Log2Txt.Instance.ErrorLog(ex.ToString());
+                    throw;
+                }
+            }
+        }
+
+        #endregion Binaries
 
         #region Contacts
 
@@ -185,11 +255,11 @@ namespace MP.Contacts.DAL
             // GC.SuppressFinalize(this);
         }
 
-        public bool Equals(LitedbDAL other)
+        #endregion IDisposable Support
+
+        bool IEquatable<LitedbDAL>.Equals(LitedbDAL other)
         {
             throw new NotImplementedException();
         }
-
-        #endregion IDisposable Support
     }
 }

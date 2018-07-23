@@ -32,8 +32,8 @@ namespace MP.Contacts.ViewModels
 
         #region Singleton
 
-        private static PersonsViewModel instance = null;
-        private static object lockThis = new object();
+        private static PersonsViewModel instance;
+        private static readonly object lockThis = new object();
 
         private PersonsViewModel()
         {
@@ -45,7 +45,7 @@ namespace MP.Contacts.ViewModels
             RefreshCmd = new RelayCommandAsync(RefreshAsync);
             NewPersonCmd = new RelayCommandAsync(NewPersonAsync);
             EditPersonCmd = new RelayCommandAsync(EditPersonAsync);
-            OpenPersonCmd = new RelayCommandAsync(OpenPerson);
+            OpenPersonCmd = new RelayCommandAsync(OpenPersonAsync);
         }
 
         public static PersonsViewModel Instance
@@ -68,7 +68,7 @@ namespace MP.Contacts.ViewModels
         #region Props
 
         private string _searchTerms = string.Empty;
-        private Person _selectedPerson = null;
+        private Person _selectedPerson;
 
         public string SearchTerms
         {
@@ -120,7 +120,7 @@ namespace MP.Contacts.ViewModels
                 {
                     var obj = Application.Current.MainWindow.FindName("FlyoutContainer");
                     var flyout = (Flyout)obj;
-                    flyout.Content = new PersonView();
+                    flyout.Content = new PersonView(true);
                     flyout.CloseButtonVisibility = Visibility.Hidden;
                     flyout.AnimateOpacity = true;
                     flyout.AreAnimationsEnabled = true;
@@ -136,27 +136,30 @@ namespace MP.Contacts.ViewModels
 
         private async Task EditPersonAsync(object arg)
         {
-            await Task.Run(() =>
+            if (arg != null && arg is Person person)
             {
-                _dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                await Task.Run(() =>
                 {
-                    var obj = Application.Current.MainWindow.FindName("FlyoutContainer");
-                    var flyout = (Flyout)obj;
-                    flyout.Content = new PersonView();
-                    flyout.CloseButtonVisibility = Visibility.Hidden;
-                    flyout.AnimateOpacity = true;
-                    flyout.AreAnimationsEnabled = true;
-                    flyout.AnimateOnPositionChange = true;
-                    flyout.IsModal = true;
-                    flyout.Position = Position.Bottom;
-                    flyout.Theme = FlyoutTheme.Accent;
-                    flyout.IsPinned = true;
-                    flyout.IsOpen = !flyout.IsOpen;
-                }));
-            }).ConfigureAwait(false);
+                    _dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                    {
+                        var obj = Application.Current.MainWindow.FindName("FlyoutContainer");
+                        var flyout = (Flyout)obj;
+                        flyout.Content = new PersonView(false, person);
+                        flyout.CloseButtonVisibility = Visibility.Hidden;
+                        flyout.AnimateOpacity = true;
+                        flyout.AreAnimationsEnabled = true;
+                        flyout.AnimateOnPositionChange = true;
+                        flyout.IsModal = true;
+                        flyout.Position = Position.Bottom;
+                        flyout.Theme = FlyoutTheme.Accent;
+                        flyout.IsPinned = true;
+                        flyout.IsOpen = !flyout.IsOpen;
+                    }));
+                }).ConfigureAwait(false);
+            }
         }
 
-        private async Task OpenPerson(object arg)
+        private async Task OpenPersonAsync(object arg)
         {
             if (arg != null)
             {
@@ -164,7 +167,10 @@ namespace MP.Contacts.ViewModels
                 {
                     if (arg is Person person)
                     {
-                        SelectedPerson = person;
+                        using (ILitedbDAL dal = new LitedbDAL())
+                        {
+                            SelectedPerson = dal.ReadPerson(person.PkIdPerson);
+                        }
                     }
                 }
                 catch (Exception ex)

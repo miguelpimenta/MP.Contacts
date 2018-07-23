@@ -8,15 +8,18 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Position;
+using ToastNotifications.Messages;
 
 namespace MP.Contacts.ViewModels
 {
-    public class MainViewModel : BindableBase
+    public class MainViewModel : BindableBase, IDisposable
     {
         private readonly IDialogCoordinator _dlgCoord;
         private readonly Dispatcher _dispatcher;
         private readonly DialogSettings _dlgSet;
-        //private readonly MsgText _msgTxt;
 
         public ICommand RefreshCmd { get; }
         public ICommand TestCmd { get; }
@@ -80,6 +83,28 @@ namespace MP.Contacts.ViewModels
                 home,
                 contacts
             };
+
+            //Notifier = new Notifier(toast =>
+            //{
+            //    toast.PositionProvider = new WindowPositionProvider(
+            //        parentWindow: Application.Current.MainWindow,
+            //        corner: Corner.BottomRight,
+            //        offsetX: 25,
+            //        offsetY: 25);
+
+            //    toast.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+            //        notificationLifetime: TimeSpan.FromSeconds(6),
+            //        maximumNotificationCount: MaximumNotificationCount.FromCount(3));
+
+            //    //toast.Dispatcher = _dispatcher;
+
+            //    toast.DisplayOptions.TopMost = false;
+            //    toast.DisplayOptions.Width = 250;
+            //});
+
+            //Notifier.ClearMessages();
+
+            //_dispatcher.BeginInvoke(new Action(() => MainViewModel.Instance.Notifier.ShowInformation("TEST")), DispatcherPriority.Background);
         }
 
         public static MainViewModel Instance
@@ -101,11 +126,11 @@ namespace MP.Contacts.ViewModels
 
         #region Props
 
-        public MenuItem[] MenuItems { get; set; }
-
+        private SnackbarMessageQueue _messageQueue = new SnackbarMessageQueue(TimeSpan.FromMilliseconds(2000));
         private bool _flyoutAbout;
         private bool _flyoutSettings;
-        private bool _flyoutNewContact;
+
+        //private bool _flyoutNewContact;
         private string _title = Settings.Default.AppName;
 
         public bool FlyoutAbout
@@ -120,11 +145,21 @@ namespace MP.Contacts.ViewModels
             set { _flyoutSettings = value; RaisePropertyChanged(nameof(FlyoutSettings)); }
         }
 
-        public bool FlyoutNewContact
+        //public bool FlyoutNewContact
+        //{
+        //    get => _flyoutNewContact;
+        //    set { _flyoutNewContact = value; RaisePropertyChanged(nameof(FlyoutNewContact)); }
+        //}
+
+        public MenuItem[] MenuItems { get; set; }
+
+        public SnackbarMessageQueue MessageQueue
         {
-            get => _flyoutNewContact;
-            set { _flyoutNewContact = value; RaisePropertyChanged(nameof(FlyoutNewContact)); }
+            get => _messageQueue;
+            set { _messageQueue = value; RaisePropertyChanged(nameof(MessageQueue)); }
         }
+
+        public Notifier Notifier { get; }
 
         public string Title
         {
@@ -158,6 +193,11 @@ namespace MP.Contacts.ViewModels
         private void CloseApp()
         {
             Environment.Exit(0);
+        }
+
+        public void Dispose()
+        {
+            _messageQueue.Dispose();
         }
     }
 }

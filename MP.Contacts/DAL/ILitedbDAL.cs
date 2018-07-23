@@ -1,4 +1,5 @@
-﻿using MP.Contacts.Models;
+﻿using LiteDB;
+using MP.Contacts.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,7 +17,13 @@ namespace MP.Contacts.DAL
 
         bool DeletePerson(Person person);
 
+        Person ReadPerson(ObjectId id);
+
         ObservableCollection<Person> ListPersons(string search, string empty1, string empty2, string empty3);
+
+        bool InsertBinary(Binary binary);
+
+        Binary ReadBinary(ObjectId id);
 
         bool InsertContact(Contact contact);
 

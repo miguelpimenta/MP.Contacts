@@ -12,10 +12,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
+using ToastNotifications.Messages;
 
 namespace MP.Contacts.ViewModels
 {
-    public class PersonViewModel
+    public class PersonViewModel : BindableBase
     {
         private readonly IDialogCoordinator _dlgCoord;
         private readonly Dispatcher _dispatcher;
@@ -28,6 +29,8 @@ namespace MP.Contacts.ViewModels
         #region Props
 
         private Person _person;
+        private bool _newPerson;
+        private string _title;
 
         public Person Person
         {
@@ -35,10 +38,39 @@ namespace MP.Contacts.ViewModels
             set => _person = value;
         }
 
+        public bool NewPerson
+        {
+            get => _newPerson;
+            set => _newPerson = value;
+        }
+
+        public string Title
+        {
+            get => _title;
+            set { _title = value; RaisePropertyChanged(nameof(Title)); }
+        }
+
         #endregion Props
 
-        public PersonViewModel()
+        //public PersonViewModel()
+        //{
+        //    _dlgCoord = DialogCoordinator.Instance;
+        //    _dispatcher = Application.Current.Dispatcher;
+        //    _dlgSet = DialogSettings.Instance;
+        //    _msgTxt = MsgText.Instance;
+        //    SaveCmd = new RelayCommandAsync(SaveAsync);
+        //    CancelCmd = new RelayCommand(Cancel);
+        //    OpenPhotoCmd = new RelayCommandAsync(OpenPhotoAsync);
+
+        //    Person = new Person();
+
+        //    TestData();
+        //}
+
+        public PersonViewModel(bool newPerson, Person person = null)
         {
+            NewPerson = newPerson;
+
             _dlgCoord = DialogCoordinator.Instance;
             _dispatcher = Application.Current.Dispatcher;
             _dlgSet = DialogSettings.Instance;
@@ -47,9 +79,18 @@ namespace MP.Contacts.ViewModels
             CancelCmd = new RelayCommand(Cancel);
             OpenPhotoCmd = new RelayCommandAsync(OpenPhotoAsync);
 
-            Person = new Person();
+            if (NewPerson)
+            {
+                Title = "New Contact";
+                Person = new Person();
 
-            TestData();
+                TestData();
+            }
+            else
+            {
+                Title = "Edit Contact";
+                Person = person;
+            }
         }
 
         #region TestData
@@ -87,16 +128,28 @@ namespace MP.Contacts.ViewModels
             var ctrl = await _dlgCoord.ShowProgressAsync(this, _msgTxt.PleaseWait, _msgTxt.Waiting,
                 false, _dlgSet.DlgDefaultSets).ConfigureAwait(false);
             ctrl.SetIndeterminate();
-            await Task.Run(() =>
+            await Task.Run(async () =>
             {
                 using (ILitedbDAL dal = new LitedbDAL())
                 {
-                    dal.InsertPerson(Person);
+                    if (NewPerson)
+                    {
+                        if (dal.InsertPerson(Person))
+                        {
+                            await ctrl.CloseAsync().ConfigureAwait(false);
+                            //await _dispatcher.BeginInvoke(new Action(() => MainViewModel.Instance.Notifier.ShowInformation(_msgTxt.SaveSuccess)), DispatcherPriority.Background);
+                            await Task.Factory.StartNew(() => MainViewModel.Instance.MessageQueue.Enqueue(_msgTxt.SaveSuccess)).ConfigureAwait(false);
+                        }
+                    }
+                    else
+                    {
+                        dal.UpdatePerson(Person);
+                    }
                 }
             }).ConfigureAwait(false);
-            await ctrl.CloseAsync().ConfigureAwait(false);
-            await _dlgCoord.ShowMessageAsync(this, _msgTxt.Info, _msgTxt.SaveSuccess,
-                MessageDialogStyle.Affirmative, _dlgSet.DlgDefaultSets).ConfigureAwait(false);
+            //            await ctrl.CloseAsync().ConfigureAwait(false);
+            //await _dlgCoord.ShowMessageAsync(this, _msgTxt.Info, _msgTxt.SaveSuccess,
+            //    MessageDialogStyle.Affirmative, _dlgSet.DlgDefaultSets).ConfigureAwait(false);
 
             Cancel(arg);
         }
@@ -122,23 +175,26 @@ namespace MP.Contacts.ViewModels
 
         private async Task OpenPhotoAsync(object obj)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Multiselect = false;
-            ofd.Filter = "Jpeg files (*.jpg)|*.jpg";
-            ofd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            var ofd = new OpenFileDialog
+            {
+                Multiselect = false,
+                Filter = "Image Files| *.jpg; *.jpeg; *.png; *.gif; *.tif;",
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+            };
             if (ofd.ShowDialog() == true)
             {
-                string file = ofd.FileNames[0];
-                if (file.Length <= 1000000)
+                var file = ofd.FileNames[0];
+                if (file.Length <= Settings.Default.DBBinFileSizeLimit)
                 {
-                    Binary bin = new Binary();
-                    bin.FileBytes = File.ReadAllBytes(file);
-                    bin.FileType = Path.GetExtension(file).Replace(".", "");
-                    Person.Binary = bin;
+                    Person.Binary = new Binary
+                    {
+                        FileBytes = File.ReadAllBytes(file),
+                        FileType = Path.GetExtension(file).Replace(".", "")
+                    };
                 }
                 else
                 {
-                    await _dlgCoord.ShowMessageAsync(this, _msgTxt.Info, "Ficheiro com tamanho superior a 1 MB.",
+                    await _dlgCoord.ShowMessageAsync(this, _msgTxt.Info, "Ficheiro com tamanho superior a 250kb.",
                         MessageDialogStyle.Affirmative, _dlgSet.DlgErrorSets).ConfigureAwait(false);
                 }
             }

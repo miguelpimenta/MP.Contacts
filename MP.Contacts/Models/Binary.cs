@@ -7,7 +7,7 @@ namespace MP.Contacts.Models
     {
         [BsonId]
         [BsonField("_id")]
-        public ObjectId PkIdBinary { get; set; } = new ObjectId();
+        public ObjectId PkIdBinary { get; set; } = ObjectId.NewObjectId();
 
         public byte[] FileBytes { get; set; } = new byte[0];
         public string FileType { get; set; } = string.Empty;

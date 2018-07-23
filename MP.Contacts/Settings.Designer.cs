@@ -148,5 +148,14 @@ namespace MP.Contacts {
                 return ((bool)(this["DBJournal"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("250000")]
+        public int DBBinFileSizeLimit {
+            get {
+                return ((int)(this["DBBinFileSizeLimit"]));
+            }
+        }
     }
 }

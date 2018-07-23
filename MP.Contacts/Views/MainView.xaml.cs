@@ -28,7 +28,7 @@ namespace MP.Contacts.Views
         public MainView()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
+            DataContext = MainViewModel.Instance;
             CancellationToken cancelToken = new CancellationToken();
             TaskCreationOptions taskCreatOpt = new TaskCreationOptions();
 
