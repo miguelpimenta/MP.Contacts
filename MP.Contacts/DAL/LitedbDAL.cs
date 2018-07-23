@@ -15,6 +15,7 @@ namespace MP.Contacts.DAL
         #region Props
 
         public string PersonsTable { get; set; } = "Persons";
+        public string BinariesTable { get; set; } = "Binaries";
         public string ContactsTable { get; set; } = "Contacts";
 
         #endregion Props
@@ -34,6 +35,7 @@ namespace MP.Contacts.DAL
             using (var db = new LiteDatabase(LitedbConn.ConnString()))
             {
                 var personsTbl = db.GetCollection<Person>(PersonsTable);
+                var binariesTbl = db.GetCollection<Binary>(BinariesTable);
                 try
                 {
                     personsTbl.Insert(person);

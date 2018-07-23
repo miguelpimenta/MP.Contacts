@@ -33,154 +33,187 @@
 			FontWeight="Bold"
 			Text="New Contact" />
 
-		<TextBox
-			Width="500"
-			Height="50"
-			materialDesign:HintAssist.Hint="Name"
-			materialDesign:HintAssist.IsFloating="True"
-			AcceptsReturn="True"
-			FontSize="16"
-			Text="{Binding Path=Person.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-			TextWrapping="Wrap" />
-		<TextBox
-			Width="500"
-			Height="50"
-			materialDesign:HintAssist.Hint="Company"
-			materialDesign:HintAssist.IsFloating="True"
-			AcceptsReturn="True"
-			FontSize="16"
-			Text="{Binding Path=Person.Company, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-			TextWrapping="Wrap" />
 		<StackPanel
 			HorizontalAlignment="Center"
 			VerticalAlignment="Center"
 			Orientation="Horizontal">
-			<TextBox
-				Width="125"
-				Height="50"
-				Margin="0,0,10,0"
-				HorizontalContentAlignment="Center"
-				materialDesign:HintAssist.Hint="Phone"
-				materialDesign:HintAssist.IsFloating="True"
-				AcceptsReturn="True"
-				FontSize="16"
-				Text="{Binding Path=Person.Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-				TextInput="OnlyDigits"
-				TextWrapping="Wrap" />
-			<TextBox
-				Width="125"
-				Height="50"
-				Margin="0,0,10,0"
-				HorizontalContentAlignment="Center"
-				materialDesign:HintAssist.Hint="CellPhone"
-				materialDesign:HintAssist.IsFloating="True"
-				AcceptsReturn="True"
-				FontSize="16"
-				Text="{Binding Path=Person.CellPhone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-				TextInput="OnlyDigits"
-				TextWrapping="Wrap" />
-			<TextBox
-				Width="215"
-				Height="50"
-				Margin="0,0,0,0"
-				HorizontalContentAlignment="Center"
-				materialDesign:HintAssist.Hint="Email"
-				materialDesign:HintAssist.IsFloating="True"
-				AcceptsReturn="True"
-				FontSize="16"
-				Text="{Binding Path=Person.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-				TextWrapping="Wrap" />
-		</StackPanel>
-
-		<TextBox
-			Width="500"
-			Height="50"
-			materialDesign:HintAssist.Hint="Address"
-			materialDesign:HintAssist.IsFloating="True"
-			AcceptsReturn="True"
-			FontSize="16"
-			Text="{Binding Path=Person.Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-			TextWrapping="Wrap" />
-		<StackPanel
-			HorizontalAlignment="Center"
-			VerticalAlignment="Center"
-			Orientation="Horizontal">
-			<TextBox
-				Width="300"
-				Height="50"
-				Margin="0,0,10,0"
-				materialDesign:HintAssist.Hint="Locality"
-				materialDesign:HintAssist.IsFloating="True"
-				AcceptsReturn="True"
-				FontSize="16"
-				Text="{Binding Path=Person.Locality, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-				TextWrapping="Wrap" />
-			<TextBox
-				Width="100"
-				Height="50"
-				Margin="0,0,0,0"
-				HorizontalContentAlignment="Center"
-				materialDesign:HintAssist.Hint="Postal Code"
-				materialDesign:HintAssist.IsFloating="True"
-				AcceptsReturn="True"
-				FontSize="16"
-				Text="{Binding Path=Person.PostalCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-				TextWrapping="Wrap" />
-		</StackPanel>
-
-		<TextBox
-			Width="500"
-			Height="80"
-			Margin="0,0,0,0"
-			VerticalContentAlignment="Top"
-			materialDesign:HintAssist.Hint="Obs"
-			materialDesign:HintAssist.IsFloating="True"
-			AcceptsReturn="True"
-			FontSize="16"
-			Text="{Binding Person.Obs, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-			TextWrapping="Wrap" />
-
-		<WrapPanel
-			Height="56"
-			HorizontalAlignment="Center"
-			VerticalAlignment="Center"
-			Orientation="Horizontal">
-			<Button
-				Width="Auto"
-				Height="Auto"
+			<StackPanel>
+				<Image
+					Width="100"
+					Height="100"
+					Source="{Binding Person.Foto, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+				<Button
+					Width="Auto"
+					Height="Auto"
+					Background="Transparent"
+					BorderThickness="0"
+					Command="{Binding OpenPhotoCmd}"
+					CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:Flyout}}"
+					ToolTip="Save">
+					<StackPanel Height="Auto" Orientation="Horizontal">
+						<materialDesign:PackIcon
+							Width="Auto"
+							Height="Auto"
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"
+							Kind="Image" />
+					</StackPanel>
+				</Button>
+			</StackPanel>
+			<StackPanel
+				VerticalAlignment="Center"
 				Background="Transparent"
-				BorderThickness="0"
-				Command="{Binding SaveCmd}"
-				CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:Flyout}}"
-				ToolTip="Save">
-				<StackPanel Height="Auto" Orientation="Horizontal">
-					<materialDesign:PackIcon
+				Orientation="Vertical">
+				<TextBox
+					Width="500"
+					Height="50"
+					materialDesign:HintAssist.Hint="Name"
+					materialDesign:HintAssist.IsFloating="True"
+					AcceptsReturn="True"
+					FontSize="16"
+					Text="{Binding Path=Person.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					TextWrapping="Wrap" />
+				<TextBox
+					Width="500"
+					Height="50"
+					materialDesign:HintAssist.Hint="Company"
+					materialDesign:HintAssist.IsFloating="True"
+					AcceptsReturn="True"
+					FontSize="16"
+					Text="{Binding Path=Person.Company, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					TextWrapping="Wrap" />
+				<StackPanel
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Orientation="Horizontal">
+					<TextBox
+						Width="125"
+						Height="50"
+						Margin="0,0,10,0"
+						HorizontalContentAlignment="Center"
+						materialDesign:HintAssist.Hint="Phone"
+						materialDesign:HintAssist.IsFloating="True"
+						AcceptsReturn="True"
+						FontSize="16"
+						Text="{Binding Path=Person.Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+						TextInput="OnlyDigits"
+						TextWrapping="Wrap" />
+					<TextBox
+						Width="125"
+						Height="50"
+						Margin="0,0,10,0"
+						HorizontalContentAlignment="Center"
+						materialDesign:HintAssist.Hint="CellPhone"
+						materialDesign:HintAssist.IsFloating="True"
+						AcceptsReturn="True"
+						FontSize="16"
+						Text="{Binding Path=Person.CellPhone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+						TextInput="OnlyDigits"
+						TextWrapping="Wrap" />
+					<TextBox
+						Width="215"
+						Height="50"
+						Margin="0,0,0,0"
+						HorizontalContentAlignment="Center"
+						materialDesign:HintAssist.Hint="Email"
+						materialDesign:HintAssist.IsFloating="True"
+						AcceptsReturn="True"
+						FontSize="16"
+						Text="{Binding Path=Person.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+						TextWrapping="Wrap" />
+				</StackPanel>
+
+				<TextBox
+					Width="500"
+					Height="50"
+					materialDesign:HintAssist.Hint="Address"
+					materialDesign:HintAssist.IsFloating="True"
+					AcceptsReturn="True"
+					FontSize="16"
+					Text="{Binding Path=Person.Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					TextWrapping="Wrap" />
+				<StackPanel
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Orientation="Horizontal">
+					<TextBox
+						Width="300"
+						Height="50"
+						Margin="0,0,10,0"
+						materialDesign:HintAssist.Hint="Locality"
+						materialDesign:HintAssist.IsFloating="True"
+						AcceptsReturn="True"
+						FontSize="16"
+						Text="{Binding Path=Person.Locality, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+						TextWrapping="Wrap" />
+					<TextBox
+						Width="100"
+						Height="50"
+						Margin="0,0,0,0"
+						HorizontalContentAlignment="Center"
+						materialDesign:HintAssist.Hint="Postal Code"
+						materialDesign:HintAssist.IsFloating="True"
+						AcceptsReturn="True"
+						FontSize="16"
+						Text="{Binding Path=Person.PostalCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+						TextWrapping="Wrap" />
+				</StackPanel>
+
+				<TextBox
+					Width="500"
+					Height="80"
+					Margin="0,0,0,0"
+					VerticalContentAlignment="Top"
+					materialDesign:HintAssist.Hint="Obs"
+					materialDesign:HintAssist.IsFloating="True"
+					AcceptsReturn="True"
+					FontSize="16"
+					Text="{Binding Person.Obs, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					TextWrapping="Wrap" />
+
+				<WrapPanel
+					Height="56"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Orientation="Horizontal">
+					<Button
 						Width="Auto"
 						Height="Auto"
-						HorizontalAlignment="Stretch"
-						VerticalAlignment="Stretch"
-						Kind="ContentSave" />
-				</StackPanel>
-			</Button>
+						Background="Transparent"
+						BorderThickness="0"
+						Command="{Binding SaveCmd}"
+						CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:Flyout}}"
+						ToolTip="Save">
+						<StackPanel Height="Auto" Orientation="Horizontal">
+							<materialDesign:PackIcon
+								Width="Auto"
+								Height="Auto"
+								HorizontalAlignment="Stretch"
+								VerticalAlignment="Stretch"
+								Kind="ContentSave" />
+						</StackPanel>
+					</Button>
 
-			<Button
-				Width="Auto"
-				Height="Auto"
-				Margin="10,0,0,0"
-				Background="Transparent"
-				BorderThickness="0"
-				Command="{Binding CancelCmd}"
-				CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:Flyout}}"
-				ToolTip="Cancel">
-				<StackPanel Height="auto" Orientation="Horizontal">
-					<materialDesign:PackIcon
+					<Button
 						Width="Auto"
 						Height="Auto"
-						HorizontalAlignment="Stretch"
-						VerticalAlignment="Stretch"
-						Kind="Close" />
-				</StackPanel>
-			</Button>
-		</WrapPanel>
+						Margin="10,0,0,0"
+						Background="Transparent"
+						BorderThickness="0"
+						Command="{Binding CancelCmd}"
+						CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:Flyout}}"
+						ToolTip="Cancel">
+						<StackPanel Height="auto" Orientation="Horizontal">
+							<materialDesign:PackIcon
+								Width="Auto"
+								Height="Auto"
+								HorizontalAlignment="Stretch"
+								VerticalAlignment="Stretch"
+								Kind="Close" />
+						</StackPanel>
+					</Button>
+				</WrapPanel>
+			</StackPanel>
+		</StackPanel>
 	</StackPanel>
 </UserControl>

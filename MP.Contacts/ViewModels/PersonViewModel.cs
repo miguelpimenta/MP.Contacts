@@ -1,10 +1,12 @@
 ﻿using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
+using Microsoft.Win32;
 using MP.Contacts.DAL;
 using MP.Contacts.Models;
 using MP.Contacts.Support;
 using MP.Contacts.Utils;
 using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,8 +23,9 @@ namespace MP.Contacts.ViewModels
         private readonly MsgText _msgTxt;
         public ICommand SaveCmd { get; }
         public ICommand CancelCmd { get; }
+        public ICommand OpenPhotoCmd { get; }
 
-        #region props
+        #region Props
 
         private Person _person;
 
@@ -32,7 +35,7 @@ namespace MP.Contacts.ViewModels
             set => _person = value;
         }
 
-        #endregion props
+        #endregion Props
 
         public PersonViewModel()
         {
@@ -42,6 +45,7 @@ namespace MP.Contacts.ViewModels
             _msgTxt = MsgText.Instance;
             SaveCmd = new RelayCommandAsync(SaveAsync);
             CancelCmd = new RelayCommand(Cancel);
+            OpenPhotoCmd = new RelayCommandAsync(OpenPhotoAsync);
 
             Person = new Person();
 
@@ -112,6 +116,30 @@ namespace MP.Contacts.ViewModels
                 {
                     Log2Txt.Instance.ErrorLog(ex.ToString());
                     throw;
+                }
+            }
+        }
+
+        private async Task OpenPhotoAsync(object obj)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Multiselect = false;
+            ofd.Filter = "Jpeg files (*.jpg)|*.jpg";
+            ofd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (ofd.ShowDialog() == true)
+            {
+                string file = ofd.FileNames[0];
+                if (file.Length <= 1000000)
+                {
+                    Binary bin = new Binary();
+                    bin.FileBytes = File.ReadAllBytes(file);
+                    bin.FileType = Path.GetExtension(file).Replace(".", "");
+                    Person.Binary = bin;
+                }
+                else
+                {
+                    await _dlgCoord.ShowMessageAsync(this, _msgTxt.Info, "Ficheiro com tamanho superior a 1 MB.",
+                        MessageDialogStyle.Affirmative, _dlgSet.DlgErrorSets).ConfigureAwait(false);
                 }
             }
         }

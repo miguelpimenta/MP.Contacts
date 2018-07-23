@@ -1,6 +1,14 @@
 ﻿using LiteDB;
 using MP.Contacts.Support;
 using System.Collections.Generic;
+using System.IO;
+
+//using System.Windows.Controls;
+using System.Windows.Media;
+using System.Drawing;
+using System.Drawing.Imaging;
+using MP.Contacts.Utils;
+using System;
 
 namespace MP.Contacts.Models
 {
@@ -17,7 +25,9 @@ namespace MP.Contacts.Models
         private string _cellPhone = string.Empty;
         private string _webSite = string.Empty;
         private string _obs = string.Empty;
+        private bool _insertDate = true;
         private bool _active = true;
+        private Binary _binary;
 
         [BsonId]
         [BsonField("_id")]
@@ -87,12 +97,54 @@ namespace MP.Contacts.Models
             set { _obs = value; RaisePropertyChanged(nameof(Obs)); }
         }
 
+        public bool InsertDate
+        {
+            get => _insertDate;
+            set { _insertDate = value; RaisePropertyChanged(nameof(InsertDate)); }
+        }
+
         public bool Active
         {
             get => _active;
             set { _active = value; RaisePropertyChanged(nameof(Active)); }
         }
 
+        [BsonRef("Binaries")]
+        public Binary Binary
+        {
+            get => _binary;
+            set { _binary = value; RaisePropertyChanged(nameof(Foto)); }
+        }
+
         public List<Contact> Contacts { get; set; }
+
+        [BsonIgnore]
+        public ImageSource Foto
+        {
+            get
+            {
+                if (Binary != null)
+                {
+                    ImageSourceConverter s = new ImageSourceConverter();
+                    return (ImageSource)s.ConvertFrom(Binary.FileBytes);
+                }
+                else
+                {
+                    try
+                    {
+                        Image img = Properties.Resources.User;
+                        byte[] buffer;
+                        MemoryStream memoryStream = new MemoryStream();
+                        img.Save(memoryStream, ImageFormat.Png);
+                        buffer = memoryStream.ToArray();
+                        return buffer.ByteToImageSource();
+                    }
+                    catch (Exception ex)
+                    {
+                        return null;
+                    }
+                }
+            }
+        }
     }
 }
