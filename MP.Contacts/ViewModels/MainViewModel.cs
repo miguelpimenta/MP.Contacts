@@ -12,6 +12,7 @@ using ToastNotifications;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Position;
 using ToastNotifications.Messages;
+using ToastNotifications.Core;
 
 namespace MP.Contacts.ViewModels
 {
@@ -26,7 +27,6 @@ namespace MP.Contacts.ViewModels
         public ICommand CloseCmd { get; }
         public ICommand AboutFlyoutCmd { get; }
         public ICommand SettingsFlyoutCmd { get; }
-        //public ICommand NewContactFlyoutCmd { get; }
 
         #region Singleton
 
@@ -44,9 +44,8 @@ namespace MP.Contacts.ViewModels
             TestCmd = new RelayCommandAsync(TestAsync);
             AboutFlyoutCmd = new RelayCommand(ShowFlyoutAbout);
             SettingsFlyoutCmd = new RelayCommand(ShowFlyoutSettings);
-            //NewContactFlyoutCmd = new RelayCommand(ShowFlyoutNewContact);
 
-            MenuItem home = new MenuItem()
+            var home = new MenuItem
             {
                 Name = "Home",
                 Text = "Home",
@@ -62,7 +61,7 @@ namespace MP.Contacts.ViewModels
                 Content = new HomeView()
             };
 
-            MenuItem contacts = new MenuItem()
+            var contacts = new MenuItem
             {
                 Name = "Contacts",
                 Text = "Contacts",
@@ -101,8 +100,6 @@ namespace MP.Contacts.ViewModels
             });
 
             Notifier.ClearMessages();
-
-            _dispatcher.BeginInvoke(new Action(() => Instance.Notifier.ShowInformation("TEST")), DispatcherPriority.Background);
         }
 
         public static MainViewModel Instance

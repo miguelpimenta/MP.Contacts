@@ -96,6 +96,11 @@ namespace MP.Contacts.ViewModels
 
         #endregion Collections
 
+        internal async Task RefreshPersonsAsync()
+        {
+            await RefreshAsync(null).ConfigureAwait(false);
+        }
+
         private async Task LoadedAsync(object arg)
         {
             await RefreshAsync(null).ConfigureAwait(false);

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
+using ToastNotifications.Core;
 using ToastNotifications.Messages;
 
 namespace MP.Contacts.ViewModels
@@ -61,7 +62,7 @@ namespace MP.Contacts.ViewModels
             _dlgSet = DialogSettings.Instance;
             _msgTxt = MsgText.Instance;
             SaveCmd = new RelayCommandAsync(SaveAsync);
-            CancelCmd = new RelayCommand(Cancel);
+            CancelCmd = new RelayCommandAsync(CancelAsync);
             OpenPhotoCmd = new RelayCommandAsync(OpenPhotoAsync);
 
             if (NewPerson)
@@ -117,12 +118,19 @@ namespace MP.Contacts.ViewModels
             {
                 using (ILitedbDAL dal = new LitedbDAL())
                 {
+                    var toastMsgOpt = new MessageOptions
+                    {
+                        FreezeOnMouseEnter = true,
+                        UnfreezeOnMouseLeave = true,
+                        ShowCloseButton = true
+                    };
+
                     if (NewPerson)
                     {
                         if (dal.InsertPerson(Person))
                         {
                             await ctrl.CloseAsync().ConfigureAwait(false);
-                            await _dispatcher.BeginInvoke(new Action(() => MainViewModel.Instance.Notifier.ShowInformation(_msgTxt.SaveSuccess)), DispatcherPriority.Normal);
+                            await _dispatcher.BeginInvoke(new Action(() => MainViewModel.Instance.Notifier.ShowSuccess(_msgTxt.SaveSuccess, toastMsgOpt)), DispatcherPriority.Normal);
                         }
                     }
                     else
@@ -130,15 +138,15 @@ namespace MP.Contacts.ViewModels
                         if (dal.UpdatePerson(Person))
                         {
                             await ctrl.CloseAsync().ConfigureAwait(false);
-                            await _dispatcher.BeginInvoke(new Action(() => MainViewModel.Instance.Notifier.ShowInformation(_msgTxt.UpdateSuccess)), DispatcherPriority.Normal);
+                            await _dispatcher.BeginInvoke(new Action(() => MainViewModel.Instance.Notifier.ShowInformation(_msgTxt.UpdateSuccess, toastMsgOpt)), DispatcherPriority.Normal);
                         }
                     }
                 }
             }).ConfigureAwait(false);
-            Cancel(arg);
+            await CancelAsync(arg).ConfigureAwait(false);
         }
 
-        private void Cancel(object obj)
+        private async Task CancelAsync(object obj)
         {
             if (obj != null)
             {
@@ -146,7 +154,8 @@ namespace MP.Contacts.ViewModels
                 {
                     if (obj is Flyout flyout)
                     {
-                        _dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => flyout.IsOpen = !flyout.IsOpen));
+                        await _dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => flyout.IsOpen = !flyout.IsOpen));
+                        await PersonsViewModel.Instance.RefreshPersonsAsync().ConfigureAwait(false);
                     }
                 }
                 catch (Exception ex)
@@ -170,11 +179,17 @@ namespace MP.Contacts.ViewModels
                 var file = ofd.FileNames[0];
                 if (file.Length <= Settings.Default.DBBinFileSizeLimit)
                 {
-                    Person.Binary = new Binary
+                    if (NewPerson)
                     {
-                        FileBytes = File.ReadAllBytes(file),
-                        FileType = Path.GetExtension(file).Replace(".", "")
-                    };
+                        Person.Binary = new Binary
+                        {
+                            FileBytes = File.ReadAllBytes(file),
+                            FileType = Path.GetExtension(file).Replace(".", "")
+                        };
+                    }
+                    else
+                    {
+                    }
                 }
                 else
                 {
