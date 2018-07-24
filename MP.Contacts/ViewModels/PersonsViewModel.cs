@@ -140,6 +140,10 @@ namespace MP.Contacts.ViewModels
             {
                 await Task.Run(() =>
                 {
+                    using (ILitedbDAL dal = new LitedbDAL())
+                    {
+                        person = dal.ReadPerson(person.PkIdPerson);
+                    }
                     _dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
                     {
                         var obj = Application.Current.MainWindow.FindName("FlyoutContainer");

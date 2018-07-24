@@ -24,6 +24,8 @@
 				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
 				<ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
 				<ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.LightBlue.xaml" />
+				<!--  Toast Notifications  -->
+				<ResourceDictionary Source="pack://application:,,,/ToastNotifications.Messages;component/Themes/Default.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 
 			<Style BasedOn="{StaticResource MahApps.Metro.Styles.WindowButtonCommands.Win10}" TargetType="{x:Type controls:WindowButtonCommands}" />

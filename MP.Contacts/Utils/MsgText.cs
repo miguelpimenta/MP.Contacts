@@ -28,12 +28,13 @@
 
         #endregion Singleton
 
-        public string Info { get; set; } = "Informação!";
-        public string Error { get; set; } = "Erro!";
-        public string ErrorMSg { get; set; } = "Algo não funcionou como era suposto.";
-        public string PleaseWait { get; set; } = "Por favor Aguarde";
-        public string Waiting { get; set; } = "A processar informação...";
-        public string Loading { get; set; } = "A carregar informação...";
-        public string SaveSuccess { get; set; } = "Gravado com sucesso.";
+        public string Info { get; internal set; } = "Informação!";
+        public string Error { get; internal set; } = "Erro!";
+        public string ErrorMSg { get; internal set; } = "Algo não funcionou como era suposto.";
+        public string PleaseWait { get; internal set; } = "Por favor Aguarde";
+        public string Waiting { get; internal set; } = "A processar informação...";
+        public string Loading { get; internal set; } = "A carregar informação...";
+        public string SaveSuccess { get; internal set; } = "Gravado com sucesso.";
+        public string UpdateSuccess { get; internal set; } = "Actualizado com sucesso.";
     }
 }

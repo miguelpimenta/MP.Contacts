@@ -52,21 +52,6 @@ namespace MP.Contacts.ViewModels
 
         #endregion Props
 
-        //public PersonViewModel()
-        //{
-        //    _dlgCoord = DialogCoordinator.Instance;
-        //    _dispatcher = Application.Current.Dispatcher;
-        //    _dlgSet = DialogSettings.Instance;
-        //    _msgTxt = MsgText.Instance;
-        //    SaveCmd = new RelayCommandAsync(SaveAsync);
-        //    CancelCmd = new RelayCommand(Cancel);
-        //    OpenPhotoCmd = new RelayCommandAsync(OpenPhotoAsync);
-
-        //    Person = new Person();
-
-        //    TestData();
-        //}
-
         public PersonViewModel(bool newPerson, Person person = null)
         {
             NewPerson = newPerson;
@@ -137,20 +122,19 @@ namespace MP.Contacts.ViewModels
                         if (dal.InsertPerson(Person))
                         {
                             await ctrl.CloseAsync().ConfigureAwait(false);
-                            //await _dispatcher.BeginInvoke(new Action(() => MainViewModel.Instance.Notifier.ShowInformation(_msgTxt.SaveSuccess)), DispatcherPriority.Background);
-                            await Task.Factory.StartNew(() => MainViewModel.Instance.MessageQueue.Enqueue(_msgTxt.SaveSuccess)).ConfigureAwait(false);
+                            await _dispatcher.BeginInvoke(new Action(() => MainViewModel.Instance.Notifier.ShowInformation(_msgTxt.SaveSuccess)), DispatcherPriority.Normal);
                         }
                     }
                     else
                     {
-                        dal.UpdatePerson(Person);
+                        if (dal.UpdatePerson(Person))
+                        {
+                            await ctrl.CloseAsync().ConfigureAwait(false);
+                            await _dispatcher.BeginInvoke(new Action(() => MainViewModel.Instance.Notifier.ShowInformation(_msgTxt.UpdateSuccess)), DispatcherPriority.Normal);
+                        }
                     }
                 }
             }).ConfigureAwait(false);
-            //            await ctrl.CloseAsync().ConfigureAwait(false);
-            //await _dlgCoord.ShowMessageAsync(this, _msgTxt.Info, _msgTxt.SaveSuccess,
-            //    MessageDialogStyle.Affirmative, _dlgSet.DlgDefaultSets).ConfigureAwait(false);
-
             Cancel(arg);
         }
 

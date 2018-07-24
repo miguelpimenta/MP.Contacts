@@ -84,27 +84,25 @@ namespace MP.Contacts.ViewModels
                 contacts
             };
 
-            //Notifier = new Notifier(toast =>
-            //{
-            //    toast.PositionProvider = new WindowPositionProvider(
-            //        parentWindow: Application.Current.MainWindow,
-            //        corner: Corner.BottomRight,
-            //        offsetX: 25,
-            //        offsetY: 25);
+            Notifier = new Notifier(toast =>
+            {
+                toast.PositionProvider = new WindowPositionProvider(
+                    parentWindow: Application.Current.MainWindow,
+                    corner: Corner.BottomRight,
+                    offsetX: 25,
+                    offsetY: 25);
 
-            //    toast.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
-            //        notificationLifetime: TimeSpan.FromSeconds(6),
-            //        maximumNotificationCount: MaximumNotificationCount.FromCount(3));
+                toast.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                    notificationLifetime: TimeSpan.FromSeconds(5),
+                    maximumNotificationCount: MaximumNotificationCount.FromCount(3));
 
-            //    //toast.Dispatcher = _dispatcher;
+                toast.DisplayOptions.TopMost = false;
+                toast.DisplayOptions.Width = 250;
+            });
 
-            //    toast.DisplayOptions.TopMost = false;
-            //    toast.DisplayOptions.Width = 250;
-            //});
+            Notifier.ClearMessages();
 
-            //Notifier.ClearMessages();
-
-            //_dispatcher.BeginInvoke(new Action(() => MainViewModel.Instance.Notifier.ShowInformation("TEST")), DispatcherPriority.Background);
+            _dispatcher.BeginInvoke(new Action(() => Instance.Notifier.ShowInformation("TEST")), DispatcherPriority.Background);
         }
 
         public static MainViewModel Instance
@@ -130,7 +128,6 @@ namespace MP.Contacts.ViewModels
         private bool _flyoutAbout;
         private bool _flyoutSettings;
 
-        //private bool _flyoutNewContact;
         private string _title = Settings.Default.AppName;
 
         public bool FlyoutAbout
@@ -144,12 +141,6 @@ namespace MP.Contacts.ViewModels
             get => _flyoutSettings;
             set { _flyoutSettings = value; RaisePropertyChanged(nameof(FlyoutSettings)); }
         }
-
-        //public bool FlyoutNewContact
-        //{
-        //    get => _flyoutNewContact;
-        //    set { _flyoutNewContact = value; RaisePropertyChanged(nameof(FlyoutNewContact)); }
-        //}
 
         public MenuItem[] MenuItems { get; set; }
 
@@ -178,11 +169,6 @@ namespace MP.Contacts.ViewModels
         {
             FlyoutSettings = (bool)obj;
         }
-
-        //internal void ShowFlyoutNewContact(object obj)
-        //{
-        //    FlyoutNewContact = (bool)obj;
-        //}
 
         private async Task TestAsync(object arg)
         {
