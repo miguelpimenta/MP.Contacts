@@ -109,13 +109,14 @@ namespace MP.Contacts.Models
             set { _active = value; RaisePropertyChanged(nameof(Active)); }
         }
 
-        [BsonRef("Binaries")]
+        //[BsonRef("Binaries")]
         public Binary Binary
         {
             get => _binary;
             set { _binary = value; RaisePropertyChanged(nameof(Foto)); }
         }
 
+        [BsonIgnore] //For now
         public List<Contact> Contacts { get; set; }
 
         [BsonIgnore]

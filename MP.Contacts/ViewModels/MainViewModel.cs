@@ -11,8 +11,6 @@ using System.Windows.Threading;
 using ToastNotifications;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Position;
-using ToastNotifications.Messages;
-using ToastNotifications.Core;
 
 namespace MP.Contacts.ViewModels
 {

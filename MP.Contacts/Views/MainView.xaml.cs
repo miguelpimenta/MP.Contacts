@@ -34,11 +34,11 @@ namespace MP.Contacts.Views
 
             Task.Factory.StartNew(() =>
             {
-                MainViewSnackbar.MessageQueue.Enqueue("Welcome");
+                MainViewSnackbar.MessageQueue.Enqueue("Welcome" + Environment.NewLine + "To MP.Contacts App");
                 Thread.Sleep(2500);
             }, cancelToken, taskCreatOpt, TaskScheduler.FromCurrentSynchronizationContext()).ContinueWith(t =>
             {
-                MainViewSnackbar.MessageQueue.Enqueue("To Contacts App");
+                MainViewSnackbar.MessageQueue.Enqueue("Have a nice day :)");
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 

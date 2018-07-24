@@ -36,21 +36,21 @@ namespace MP.Contacts.DAL
                 {
                     personsTbl.Insert(person);
                     personsTbl.EnsureIndex(x => x.PkIdPerson);
-                    if (person.Binary.FileBytes.Length > 50)
-                    {
-                        var binariesTbl = db.GetCollection<Binary>(BinariesTable);
-                        try
-                        {
-                            binariesTbl.Insert(person.Binary);
-                            binariesTbl.EnsureIndex(x => x.PkIdBinary);
-                            return true;
-                        }
-                        catch (Exception ex)
-                        {
-                            Log2Txt.Instance.ErrorLog(ex.ToString());
-                            throw;
-                        }
-                    }
+                    //if (person.Binary.FileBytes.Length > 50)
+                    //{
+                    //    var binariesTbl = db.GetCollection<Binary>(BinariesTable);
+                    //    try
+                    //    {
+                    //        binariesTbl.Insert(person.Binary);
+                    //        binariesTbl.EnsureIndex(x => x.PkIdBinary);
+                    //        return true;
+                    //    }
+                    //    catch (Exception ex)
+                    //    {
+                    //        Log2Txt.Instance.ErrorLog(ex.ToString());
+                    //        throw;
+                    //    }
+                    //}
                     return true;
                 }
                 catch (Exception ex)
@@ -88,7 +88,7 @@ namespace MP.Contacts.DAL
                 try
                 {
                     return personsTbl
-                        .Include(x => x.Binary)
+                        //.Include(x => x.Binary)
                         .FindById(id);
                 }
                 catch (Exception ex)

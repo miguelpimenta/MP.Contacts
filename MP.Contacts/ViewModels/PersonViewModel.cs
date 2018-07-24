@@ -179,17 +179,11 @@ namespace MP.Contacts.ViewModels
                 var file = ofd.FileNames[0];
                 if (file.Length <= Settings.Default.DBBinFileSizeLimit)
                 {
-                    if (NewPerson)
+                    Person.Binary = new Binary
                     {
-                        Person.Binary = new Binary
-                        {
-                            FileBytes = File.ReadAllBytes(file),
-                            FileType = Path.GetExtension(file).Replace(".", "")
-                        };
-                    }
-                    else
-                    {
-                    }
+                        FileBytes = File.ReadAllBytes(file),
+                        FileType = Path.GetExtension(file).Replace(".", "")
+                    };
                 }
                 else
                 {
