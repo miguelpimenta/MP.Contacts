@@ -5,6 +5,7 @@
 	xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+	xmlns:lang="clr-namespace:MP.Contacts.Utils"
 	xmlns:local="clr-namespace:MP.Contacts.Views"
 	xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 	xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
@@ -49,7 +50,7 @@
 					BorderThickness="0"
 					Command="{Binding OpenPhotoCmd}"
 					CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:Flyout}}"
-					ToolTip="Save">
+					ToolTip="{Binding OpenPhoto, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}">
 					<StackPanel Height="Auto" Orientation="Horizontal">
 						<materialDesign:PackIcon
 							Width="Auto"
@@ -67,7 +68,7 @@
 				<TextBox
 					Width="500"
 					Height="50"
-					materialDesign:HintAssist.Hint="Name"
+					materialDesign:HintAssist.Hint="{Binding Name, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
 					materialDesign:HintAssist.IsFloating="True"
 					AcceptsReturn="True"
 					FontSize="16"
@@ -76,7 +77,7 @@
 				<TextBox
 					Width="500"
 					Height="50"
-					materialDesign:HintAssist.Hint="Company"
+					materialDesign:HintAssist.Hint="{Binding Company, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
 					materialDesign:HintAssist.IsFloating="True"
 					AcceptsReturn="True"
 					FontSize="16"
@@ -91,7 +92,7 @@
 						Height="50"
 						Margin="0,0,10,0"
 						HorizontalContentAlignment="Center"
-						materialDesign:HintAssist.Hint="Phone"
+						materialDesign:HintAssist.Hint="{Binding Phone, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
 						materialDesign:HintAssist.IsFloating="True"
 						AcceptsReturn="True"
 						FontSize="16"
@@ -103,7 +104,7 @@
 						Height="50"
 						Margin="0,0,10,0"
 						HorizontalContentAlignment="Center"
-						materialDesign:HintAssist.Hint="CellPhone"
+						materialDesign:HintAssist.Hint="{Binding CellPhone, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
 						materialDesign:HintAssist.IsFloating="True"
 						AcceptsReturn="True"
 						FontSize="16"
@@ -115,7 +116,7 @@
 						Height="50"
 						Margin="0,0,0,0"
 						HorizontalContentAlignment="Center"
-						materialDesign:HintAssist.Hint="Email"
+						materialDesign:HintAssist.Hint="{Binding Email, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
 						materialDesign:HintAssist.IsFloating="True"
 						AcceptsReturn="True"
 						FontSize="16"
@@ -126,7 +127,7 @@
 				<TextBox
 					Width="500"
 					Height="50"
-					materialDesign:HintAssist.Hint="Address"
+					materialDesign:HintAssist.Hint="{Binding Address, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
 					materialDesign:HintAssist.IsFloating="True"
 					AcceptsReturn="True"
 					FontSize="16"
@@ -140,7 +141,7 @@
 						Width="300"
 						Height="50"
 						Margin="0,0,10,0"
-						materialDesign:HintAssist.Hint="Locality"
+						materialDesign:HintAssist.Hint="{Binding Locality, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
 						materialDesign:HintAssist.IsFloating="True"
 						AcceptsReturn="True"
 						FontSize="16"
@@ -151,7 +152,7 @@
 						Height="50"
 						Margin="0,0,0,0"
 						HorizontalContentAlignment="Center"
-						materialDesign:HintAssist.Hint="Postal Code"
+						materialDesign:HintAssist.Hint="{Binding PostalCode, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
 						materialDesign:HintAssist.IsFloating="True"
 						AcceptsReturn="True"
 						FontSize="16"
@@ -164,7 +165,7 @@
 					Height="80"
 					Margin="0,0,0,0"
 					VerticalContentAlignment="Top"
-					materialDesign:HintAssist.Hint="Obs"
+					materialDesign:HintAssist.Hint="{Binding Obs, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
 					materialDesign:HintAssist.IsFloating="True"
 					AcceptsReturn="True"
 					FontSize="16"
@@ -183,7 +184,7 @@
 						BorderThickness="0"
 						Command="{Binding SaveCmd}"
 						CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:Flyout}}"
-						ToolTip="Save">
+						ToolTip="{Binding Save, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}">
 						<StackPanel Height="Auto" Orientation="Horizontal">
 							<materialDesign:PackIcon
 								Width="Auto"
@@ -202,7 +203,7 @@
 						BorderThickness="0"
 						Command="{Binding CancelCmd}"
 						CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:Flyout}}"
-						ToolTip="Cancel">
+						ToolTip="{Binding Cancel, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}">
 						<StackPanel Height="auto" Orientation="Horizontal">
 							<materialDesign:PackIcon
 								Width="Auto"

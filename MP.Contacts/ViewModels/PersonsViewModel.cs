@@ -113,6 +113,7 @@ namespace MP.Contacts.ViewModels
                 using (ILitedbDAL dal = new LitedbDAL())
                 {
                     Persons = dal.ListPersons(SearchTerms, string.Empty, string.Empty, string.Empty);
+                    SelectedPerson = null;
                 }
             }).ConfigureAwait(false);
         }

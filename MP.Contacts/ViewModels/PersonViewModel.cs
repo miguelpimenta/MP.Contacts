@@ -67,14 +67,14 @@ namespace MP.Contacts.ViewModels
 
             if (NewPerson)
             {
-                Title = "New Contact";
+                Title = MsgText.Instance.NewContact;
                 Person = new Person();
 
                 TestData();
             }
             else
             {
-                Title = "Edit Contact";
+                Title = MsgText.Instance.EditContact;
                 Person = person;
             }
         }
@@ -187,7 +187,7 @@ namespace MP.Contacts.ViewModels
                 }
                 else
                 {
-                    await _dlgCoord.ShowMessageAsync(this, _msgTxt.Info, "Ficheiro com tamanho superior a 250kb.",
+                    await _dlgCoord.ShowMessageAsync(this, _msgTxt.Error, _msgTxt.ErrorMSgFileSize,
                         MessageDialogStyle.Affirmative, _dlgSet.DlgErrorSets).ConfigureAwait(false);
                 }
             }

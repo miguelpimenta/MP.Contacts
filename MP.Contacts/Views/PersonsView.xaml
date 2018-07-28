@@ -5,14 +5,13 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
 	xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+	xmlns:lang="clr-namespace:MP.Contacts.Utils"
 	xmlns:local="clr-namespace:MP.Contacts.Views"
 	xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 	xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	MinWidth="500"
-	MinHeight="500"
-	d:DesignHeight="550"
-	d:DesignWidth="600"
+	MinHeight="600"
 	dialog:DialogParticipation.Register="{Binding}"
 	Background="{DynamicResource MaterialDesignPaper}"
 	FontFamily="{DynamicResource MaterialDesignFont}"
@@ -29,72 +28,16 @@
 			<i:InvokeCommandAction Command="{Binding LoadedCmd}" />
 		</i:EventTrigger>
 	</i:Interaction.Triggers>
+
 	<Grid Background="{StaticResource GradientColorDefault}">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="250" />
 			<ColumnDefinition Width="500*" />
 		</Grid.ColumnDefinitions>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="46" />
-			<RowDefinition Height="400*" />
-		</Grid.RowDefinitions>
+
 		<StackPanel
 			Grid.Row="0"
-			Grid.Column="1"
-			Margin="10,0,0,0"
-			Orientation="Horizontal">
-			<TextBox
-				Width="200"
-				Height="Auto"
-				Margin="0,0,0,10"
-				materialDesign:HintAssist.Hint="Search"
-				materialDesign:HintAssist.IsFloating="True"
-				Text="{Binding SearchTerms, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-				<TextBox.InputBindings>
-					<KeyBinding Key="Enter" Command="{Binding RefreshCmd}" />
-					<KeyBinding Key="Return" Command="{Binding RefreshCmd}" />
-				</TextBox.InputBindings>
-			</TextBox>
-			<Button
-				Width="Auto"
-				Margin="0,0,0,0"
-				Background="Transparent"
-				BorderThickness="0"
-				Command="{Binding RefreshCmd}"
-				ToolTip="refresh">
-				<StackPanel Height="Auto" Orientation="Horizontal">
-					<materialDesign:PackIcon
-						Width="auto"
-						Height="auto"
-						Margin="0,0,0,0"
-						HorizontalAlignment="Stretch"
-						VerticalAlignment="Stretch"
-						Foreground="Blue"
-						Kind="Refresh" />
-				</StackPanel>
-			</Button>
-			<Button
-				Width="Auto"
-				Margin="0,0,0,0"
-				Background="Transparent"
-				BorderThickness="0"
-				Command="{Binding NewPersonCmd}"
-				ToolTip="refresh">
-				<StackPanel Height="Auto" Orientation="Horizontal">
-					<materialDesign:PackIcon
-						Width="auto"
-						Height="auto"
-						Margin="0,0,0,0"
-						HorizontalAlignment="Stretch"
-						VerticalAlignment="Stretch"
-						Foreground="Blue"
-						Kind="AccountPlus" />
-				</StackPanel>
-			</Button>
-		</StackPanel>
-		<StackPanel
-			Grid.Row="0"
-			Grid.RowSpan="2"
+			Grid.Column="0"
 			Margin="10,0,10,0"
 			Orientation="Vertical">
 			<StackPanel HorizontalAlignment="Left">
@@ -106,13 +49,15 @@
 			</StackPanel>
 			<StackPanel Orientation="Vertical">
 				<TextBox
-					materialDesign:HintAssist.Hint="Name"
+					materialDesign:HintAssist.Hint="{Binding Name, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
 					materialDesign:HintAssist.IsFloating="True"
+					FontWeight="Bold"
 					IsReadOnly="True"
 					Text="{Binding Path=SelectedPerson.Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 				<TextBox
-					materialDesign:HintAssist.Hint="Company"
+					materialDesign:HintAssist.Hint="{Binding Company, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
 					materialDesign:HintAssist.IsFloating="True"
+					FontWeight="Bold"
 					IsReadOnly="True"
 					Text="{Binding Path=SelectedPerson.Company, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 			</StackPanel>
@@ -120,7 +65,7 @@
 				<TextBox
 					Width="110"
 					HorizontalContentAlignment="Center"
-					materialDesign:HintAssist.Hint="Phone"
+					materialDesign:HintAssist.Hint="{Binding Phone, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
 					materialDesign:HintAssist.IsFloating="True"
 					FontSize="16"
 					FontWeight="Bold"
@@ -130,7 +75,7 @@
 					Width="110"
 					Margin="10,0,0,0"
 					HorizontalContentAlignment="Center"
-					materialDesign:HintAssist.Hint="CellPhone"
+					materialDesign:HintAssist.Hint="{Binding CellPhone, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
 					materialDesign:HintAssist.IsFloating="True"
 					FontSize="16"
 					FontWeight="Bold"
@@ -139,77 +84,136 @@
 			</StackPanel>
 			<StackPanel Orientation="Vertical">
 				<TextBox
-					materialDesign:HintAssist.Hint="Email"
+					materialDesign:HintAssist.Hint="{Binding Email, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
 					materialDesign:HintAssist.IsFloating="True"
+					FontWeight="Bold"
 					IsReadOnly="True"
 					Text="{Binding Path=SelectedPerson.Email, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 				<TextBox
-					materialDesign:HintAssist.Hint="Website"
+					materialDesign:HintAssist.Hint="{Binding WebPage, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
 					materialDesign:HintAssist.IsFloating="True"
+					FontWeight="Bold"
 					IsReadOnly="True"
 					Text="{Binding Path=SelectedPerson.Website, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 			</StackPanel>
 		</StackPanel>
 
-		<DataGrid
-			Grid.Row="1"
-			Grid.Column="1"
-			Margin="10,0,0,0"
-			AutoGenerateColumns="False"
-			Background="Transparent"
-			CanUserAddRows="False"
-			CanUserDeleteRows="False"
-			GridLinesVisibility="Horizontal"
-			HorizontalGridLinesBrush="{StaticResource DdgGridLineColor}"
-			ItemsSource="{Binding Path=Persons}"
-			ScrollViewer.HorizontalScrollBarVisibility="Auto"
-			ScrollViewer.VerticalScrollBarVisibility="Auto">
-			<DataGrid.CellStyle>
-				<StaticResource ResourceKey="DataGridContentCellCentering" />
-			</DataGrid.CellStyle>
-			<i:Interaction.Triggers>
-				<i:EventTrigger EventName="MouseLeftButtonUp">
-					<i:InvokeCommandAction Command="{Binding OpenPersonCmd}" CommandParameter="{Binding Path=SelectedItem, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}" />
-				</i:EventTrigger>
-				<i:EventTrigger EventName="MouseDoubleClick">
-					<i:InvokeCommandAction Command="{Binding EditPersonCmd}" CommandParameter="{Binding Path=SelectedItem, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}" />
-				</i:EventTrigger>
-			</i:Interaction.Triggers>
-			<DataGrid.RowStyle>
-				<Style TargetType="{x:Type DataGridRow}">
-					<Setter Property="MinHeight" Value="30" />
-					<Setter Property="Background" Value="Transparent" />
-					<Setter Property="FontSize" Value="14" />
-					<Setter Property="Foreground" Value="Black" />
-				</Style>
-			</DataGrid.RowStyle>
-			<DataGrid.Columns>
-				<DataGridTextColumn
+		<StackPanel Grid.Column="1" Orientation="Vertical">
+			<StackPanel
+				Grid.Row="0"
+				Grid.Column="1"
+				Margin="10,0,0,0"
+				Orientation="Horizontal">
+				<TextBox
+					Width="200"
+					Height="40"
+					Margin="0,0,0,10"
+					materialDesign:HintAssist.Hint="{Binding Search, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+					materialDesign:HintAssist.IsFloating="True"
+					Text="{Binding SearchTerms, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+					<TextBox.InputBindings>
+						<KeyBinding Key="Enter" Command="{Binding RefreshCmd}" />
+						<KeyBinding Key="Return" Command="{Binding RefreshCmd}" />
+					</TextBox.InputBindings>
+				</TextBox>
+				<Button
 					Width="Auto"
-					MinWidth="200"
-					Binding="{Binding Name}"
-					Header="Name" />
-				<DataGridTextColumn
+					Margin="0,0,0,0"
+					Background="Transparent"
+					BorderThickness="0"
+					Command="{Binding RefreshCmd}"
+					ToolTip="{Binding Refresh, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}">
+					<StackPanel Height="Auto" Orientation="Horizontal">
+						<materialDesign:PackIcon
+							Width="auto"
+							Height="auto"
+							Margin="0,0,0,0"
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"
+							Foreground="Blue"
+							Kind="Refresh" />
+					</StackPanel>
+				</Button>
+				<Button
 					Width="Auto"
-					MinWidth="100"
-					Binding="{Binding Company}"
-					Header="Company" />
-				<DataGridTextColumn
-					Width="Auto"
-					MinWidth="80"
-					Binding="{Binding Phone}"
-					Header="Phone" />
-				<DataGridTextColumn
-					Width="Auto"
-					MinWidth="80"
-					Binding="{Binding CellPhone}"
-					Header="CellPhone" />
-				<DataGridTextColumn
-					Width="Auto"
-					MinWidth="80"
-					Binding="{Binding Email}"
-					Header="Email" />
-			</DataGrid.Columns>
-		</DataGrid>
+					Margin="0,0,0,0"
+					Background="Transparent"
+					BorderThickness="0"
+					Command="{Binding NewPersonCmd}"
+					ToolTip="{Binding NewPerson, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}">
+					<StackPanel Height="Auto" Orientation="Horizontal">
+						<materialDesign:PackIcon
+							Width="auto"
+							Height="auto"
+							Margin="0,0,0,0"
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"
+							Foreground="Blue"
+							Kind="AccountPlus" />
+					</StackPanel>
+				</Button>
+			</StackPanel>
+
+			<DataGrid
+				Grid.Row="1"
+				Grid.Column="1"
+				Margin="10,0,0,0"
+				AutoGenerateColumns="False"
+				Background="Transparent"
+				CanUserAddRows="False"
+				CanUserDeleteRows="False"
+				GridLinesVisibility="Horizontal"
+				HorizontalGridLinesBrush="{StaticResource DdgGridLineColor}"
+				ItemsSource="{Binding Path=Persons}"
+				ScrollViewer.HorizontalScrollBarVisibility="Auto"
+				ScrollViewer.VerticalScrollBarVisibility="Auto">
+				<DataGrid.CellStyle>
+					<StaticResource ResourceKey="DataGridContentCellCentering" />
+				</DataGrid.CellStyle>
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="MouseLeftButtonUp">
+						<i:InvokeCommandAction Command="{Binding OpenPersonCmd}" CommandParameter="{Binding Path=SelectedItem, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}" />
+					</i:EventTrigger>
+					<i:EventTrigger EventName="MouseDoubleClick">
+						<i:InvokeCommandAction Command="{Binding EditPersonCmd}" CommandParameter="{Binding Path=SelectedItem, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+				<DataGrid.RowStyle>
+					<Style TargetType="{x:Type DataGridRow}">
+						<Setter Property="MinHeight" Value="30" />
+						<Setter Property="Background" Value="Transparent" />
+						<Setter Property="FontSize" Value="14" />
+						<Setter Property="Foreground" Value="Black" />
+					</Style>
+				</DataGrid.RowStyle>
+				<DataGrid.Columns>
+					<DataGridTextColumn
+						Width="Auto"
+						MinWidth="200"
+						Binding="{Binding Name}"
+						Header="{Binding Name, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}" />
+					<DataGridTextColumn
+						Width="Auto"
+						MinWidth="100"
+						Binding="{Binding Company}"
+						Header="{Binding Company, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}" />
+					<DataGridTextColumn
+						Width="Auto"
+						MinWidth="80"
+						Binding="{Binding Phone}"
+						Header="{Binding Phone, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}" />
+					<DataGridTextColumn
+						Width="Auto"
+						MinWidth="80"
+						Binding="{Binding CellPhone}"
+						Header="{Binding CellPhone, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}" />
+					<DataGridTextColumn
+						Width="Auto"
+						MinWidth="80"
+						Binding="{Binding Email}"
+						Header="{Binding Email, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}" />
+				</DataGrid.Columns>
+			</DataGrid>
+		</StackPanel>
 	</Grid>
 </UserControl>

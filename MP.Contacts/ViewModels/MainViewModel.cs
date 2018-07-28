@@ -2,6 +2,7 @@
 using MaterialDesignThemes.Wpf;
 using MP.Contacts.Models;
 using MP.Contacts.Support;
+using MP.Contacts.Utils;
 using MP.Contacts.Views;
 using System;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace MP.Contacts.ViewModels
         private readonly IDialogCoordinator _dlgCoord;
         private readonly Dispatcher _dispatcher;
         private readonly DialogSettings _dlgSet;
+        private readonly MsgText _msgTxt;
 
         public ICommand RefreshCmd { get; }
         public ICommand TestCmd { get; }
@@ -36,7 +38,7 @@ namespace MP.Contacts.ViewModels
             _dlgCoord = DialogCoordinator.Instance;
             _dispatcher = Application.Current.Dispatcher;
             _dlgSet = DialogSettings.Instance;
-            //_msgTxt = MsgText.Instance;
+            _msgTxt = MsgText.Instance;
 
             CloseCmd = new DelegateCommand(CloseApp);
             TestCmd = new RelayCommandAsync(TestAsync);
@@ -45,9 +47,9 @@ namespace MP.Contacts.ViewModels
 
             var home = new MenuItem
             {
-                Name = "Home",
-                Text = "Home",
-                ToolTip = "Home",
+                Name = MsgText.Instance.Home,
+                Text = MsgText.Instance.Home,
+                ToolTip = MsgText.Instance.Home,
                 Icon = new PackIcon
                 {
                     Kind = PackIconKind.Home,
@@ -61,9 +63,9 @@ namespace MP.Contacts.ViewModels
 
             var contacts = new MenuItem
             {
-                Name = "Contacts",
-                Text = "Contacts",
-                ToolTip = "Contacts",
+                Name = MsgText.Instance.Contacts,
+                Text = MsgText.Instance.Contacts,
+                ToolTip = MsgText.Instance.Contacts,
                 Icon = new PackIcon
                 {
                     Kind = PackIconKind.Contacts,

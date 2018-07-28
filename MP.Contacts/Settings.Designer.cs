@@ -157,5 +157,14 @@ namespace MP.Contacts {
                 return ((int)(this["DBBinFileSizeLimit"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("pt-PT")]
+        public string Culture {
+            get {
+                return ((string)(this["Culture"]));
+            }
+        }
     }
 }
