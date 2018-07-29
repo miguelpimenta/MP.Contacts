@@ -1,5 +1,6 @@
 ﻿using MahApps.Metro.Controls;
 using MaterialDesignThemes.Wpf;
+using MP.Contacts.Utils;
 using MP.Contacts.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -34,11 +35,11 @@ namespace MP.Contacts.Views
 
             Task.Factory.StartNew(() =>
             {
-                MainViewSnackbar.MessageQueue.Enqueue("Welcome" + Environment.NewLine + "To MP.Contacts App");
+                MainViewSnackbar.MessageQueue.Enqueue(MsgText.Instance.Welcome01);
                 Thread.Sleep(2500);
             }, cancelToken, taskCreatOpt, TaskScheduler.FromCurrentSynchronizationContext()).ContinueWith(t =>
             {
-                MainViewSnackbar.MessageQueue.Enqueue("Have a nice day :)");
+                MainViewSnackbar.MessageQueue.Enqueue(MsgText.Instance.Welcome02);
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 

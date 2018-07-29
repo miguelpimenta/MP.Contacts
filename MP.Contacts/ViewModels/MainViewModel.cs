@@ -125,8 +125,6 @@ namespace MP.Contacts.ViewModels
         private bool _flyoutAbout;
         private bool _flyoutSettings;
 
-        private string _title = Settings.Default.AppName;
-
         public bool FlyoutAbout
         {
             get => _flyoutAbout;
@@ -148,12 +146,6 @@ namespace MP.Contacts.ViewModels
         }
 
         public Notifier Notifier { get; }
-
-        public string Title
-        {
-            get => _title;
-            set { _title = value; RaisePropertyChanged(nameof(Title)); }
-        }
 
         #endregion Props
 

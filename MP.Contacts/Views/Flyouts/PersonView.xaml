@@ -24,6 +24,7 @@
 	mc:Ignorable="d">
 
 	<StackPanel
+		Margin="20,20,20,20"
 		VerticalAlignment="Center"
 		Background="Transparent"
 		Orientation="Vertical">
@@ -57,7 +58,7 @@
 							Height="Auto"
 							HorizontalAlignment="Stretch"
 							VerticalAlignment="Stretch"
-							Kind="Image" />
+							Kind="FolderImage" />
 					</StackPanel>
 				</Button>
 			</StackPanel>

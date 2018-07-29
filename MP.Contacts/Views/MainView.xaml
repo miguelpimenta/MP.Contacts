@@ -7,9 +7,10 @@
 	xmlns:domain="clr-namespace:MP.Contacts"
 	xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
 	xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+	xmlns:lang="clr-namespace:MP.Contacts.Utils"
 	xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 	xmlns:system="clr-namespace:System;assembly=mscorlib"
-	Title="{Binding Title}"
+	Title="{Binding Title, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
 	Width="1000"
 	Height="650"
 	dialog:DialogParticipation.Register="{Binding}"
@@ -110,21 +111,6 @@
 				TitleVisibility="Visible" />
 
 			<controls:Flyout x:Name="FlyoutContainer" />
-
-			<!--<controls:Flyout
-				x:Name="FlyoutTop"
-				Width="Auto"
-				AnimateOnPositionChange="True"
-				AnimateOpacity="True"
-				AreAnimationsEnabled="True"
-				CloseButtonVisibility="Visible"
-				ExternalCloseButton="Middle"
-				IsModal="True"
-				IsOpen="{Binding FlyoutNewContact, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-				IsPinned="True"
-				Position="Top"
-				Theme="Accent"
-				TitleVisibility="Visible">-->
 		</controls:FlyoutsControl>
 	</controls:MetroWindow.Flyouts>
 
@@ -190,22 +176,24 @@
 						<ToggleButton
 							x:Name="MenuToggleButton"
 							IsChecked="False"
-							Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
+							Style="{StaticResource MaterialDesignHamburgerToggleButton}"
+							ToolTip="{Binding OpenMenu, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}" />
 						<materialDesign:PopupBox
 							DockPanel.Dock="Right"
 							PlacementMode="BottomAndAlignRightEdges"
-							StaysOpen="False">
+							StaysOpen="False"
+							ToolTip="{Binding FileMenu, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}">
 							<StackPanel>
 								<Button Command="{Binding TestCmd}" Content="Hello World" />
 								<Separator />
-								<Button Command="{Binding CloseCmd}" Content="Exit" />
+								<Button Command="{Binding CloseCmd}" Content="{Binding Exit, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}" />
 							</StackPanel>
 						</materialDesign:PopupBox>
 						<TextBlock
 							HorizontalAlignment="Center"
 							VerticalAlignment="Center"
 							FontSize="22"
-							Text="{Binding Title, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+							Text="{Binding Title, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}" />
 					</DockPanel>
 				</materialDesign:ColorZone>
 				<Grid>
@@ -213,7 +201,6 @@
 						<RowDefinition Height="Auto" />
 						<RowDefinition Height="*" />
 					</Grid.RowDefinitions>
-					<!--<domain:DocumentationLinks Margin="0,0,0,16" DataContext="{Binding ElementName=DemoItemsListBox, Path=SelectedItem}" />-->
 					<ScrollViewer
 						Grid.Row="1"
 						Padding="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.MarginRequirement}"
