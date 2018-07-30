@@ -1,8 +1,9 @@
-﻿using System;
+﻿using MP.Contacts.Support;
+using System;
 
 namespace MP.Contacts.Utils
 {
-    public sealed class MsgText
+    public sealed class MsgText : BindableBase
     {
         #region Singleton
 
@@ -73,5 +74,10 @@ namespace MP.Contacts.Utils
         public string Contacts { get => Lang.Equals("pt-PT") ? "Contactos" : "Contacts"; }
         public string NewContact { get => Lang.Equals("pt-PT") ? "Novo Contacto" : "New Contacts"; }
         public string EditContact { get => Lang.Equals("pt-PT") ? "Alterar Contacto" : "Edit Contact"; }
+
+        public void UpdateLanguage()
+        {
+            RaisePropertyChanged(null);
+        }
     }
 }

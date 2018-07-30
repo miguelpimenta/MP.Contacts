@@ -133,7 +133,7 @@ namespace MP.Contacts.ViewModels
                     flyout.AnimateOnPositionChange = true;
                     flyout.IsModal = true;
                     flyout.Position = Position.Top;
-                    flyout.Theme = FlyoutTheme.Accent;
+                    flyout.Theme = FlyoutTheme.Light;
                     flyout.IsPinned = true;
                     flyout.IsOpen = !flyout.IsOpen;
                 }));
@@ -161,7 +161,7 @@ namespace MP.Contacts.ViewModels
                         flyout.AnimateOnPositionChange = true;
                         flyout.IsModal = true;
                         flyout.Position = Position.Bottom;
-                        flyout.Theme = FlyoutTheme.Accent;
+                        flyout.Theme = FlyoutTheme.Light;
                         flyout.IsPinned = true;
                         flyout.IsOpen = !flyout.IsOpen;
                     }));

@@ -2,6 +2,7 @@
 	x:Class="MP.Contacts.Views.MainView"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:Flyouts="clr-namespace:MP.Contacts.Views.Flyouts"
 	xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
 	xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
 	xmlns:domain="clr-namespace:MP.Contacts"
@@ -108,7 +109,9 @@
 				IsOpen="{Binding FlyoutSettings, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 				Position="Right"
 				Theme="Accent"
-				TitleVisibility="Visible" />
+				TitleVisibility="Visible">
+				<Flyouts:SettingsView />
+			</controls:Flyout>
 
 			<controls:Flyout x:Name="FlyoutContainer" />
 		</controls:FlyoutsControl>

@@ -160,7 +160,7 @@ namespace MP.Contacts {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("pt-PT")]
+        [global::System.Configuration.DefaultSettingValueAttribute("en-EN")]
         public string Culture {
             get {
                 return ((string)(this["Culture"]));
