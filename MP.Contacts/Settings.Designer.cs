@@ -158,12 +158,15 @@ namespace MP.Contacts {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("en-EN")]
         public string Culture {
             get {
                 return ((string)(this["Culture"]));
+            }
+            set {
+                this["Culture"] = value;
             }
         }
     }

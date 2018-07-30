@@ -49,13 +49,13 @@
 			</StackPanel>
 			<StackPanel Orientation="Vertical">
 				<TextBox
-					materialDesign:HintAssist.Hint="{Binding Name, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+					materialDesign:HintAssist.Hint="{Binding Name, Source={x:Static lang:MsgText.Instance}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
 					materialDesign:HintAssist.IsFloating="True"
 					FontWeight="Bold"
 					IsReadOnly="True"
 					Text="{Binding Path=SelectedPerson.Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 				<TextBox
-					materialDesign:HintAssist.Hint="{Binding Company, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+					materialDesign:HintAssist.Hint="{Binding Company, Source={x:Static lang:MsgText.Instance}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
 					materialDesign:HintAssist.IsFloating="True"
 					FontWeight="Bold"
 					IsReadOnly="True"
@@ -65,7 +65,7 @@
 				<TextBox
 					Width="110"
 					HorizontalContentAlignment="Center"
-					materialDesign:HintAssist.Hint="{Binding Phone, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+					materialDesign:HintAssist.Hint="{Binding Phone, Source={x:Static lang:MsgText.Instance}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
 					materialDesign:HintAssist.IsFloating="True"
 					FontSize="16"
 					FontWeight="Bold"
@@ -75,7 +75,7 @@
 					Width="110"
 					Margin="10,0,0,0"
 					HorizontalContentAlignment="Center"
-					materialDesign:HintAssist.Hint="{Binding CellPhone, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+					materialDesign:HintAssist.Hint="{Binding CellPhone, Source={x:Static lang:MsgText.Instance}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
 					materialDesign:HintAssist.IsFloating="True"
 					FontSize="16"
 					FontWeight="Bold"
@@ -84,13 +84,13 @@
 			</StackPanel>
 			<StackPanel Orientation="Vertical">
 				<TextBox
-					materialDesign:HintAssist.Hint="{Binding Email, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+					materialDesign:HintAssist.Hint="{Binding Email, Source={x:Static lang:MsgText.Instance}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
 					materialDesign:HintAssist.IsFloating="True"
 					FontWeight="Bold"
 					IsReadOnly="True"
 					Text="{Binding Path=SelectedPerson.Email, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 				<TextBox
-					materialDesign:HintAssist.Hint="{Binding WebPage, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+					materialDesign:HintAssist.Hint="{Binding WebPage, Source={x:Static lang:MsgText.Instance}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
 					materialDesign:HintAssist.IsFloating="True"
 					FontWeight="Bold"
 					IsReadOnly="True"
@@ -108,7 +108,7 @@
 					Width="200"
 					Height="40"
 					Margin="0,0,0,10"
-					materialDesign:HintAssist.Hint="{Binding Search, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+					materialDesign:HintAssist.Hint="{Binding Search, Source={x:Static lang:MsgText.Instance}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
 					materialDesign:HintAssist.IsFloating="True"
 					Text="{Binding SearchTerms, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 					<TextBox.InputBindings>
@@ -122,7 +122,7 @@
 					Background="Transparent"
 					BorderThickness="0"
 					Command="{Binding RefreshCmd}"
-					ToolTip="{Binding Refresh, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}">
+					ToolTip="{Binding Refresh, Source={x:Static lang:MsgText.Instance}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
 					<StackPanel Height="Auto" Orientation="Horizontal">
 						<materialDesign:PackIcon
 							Width="auto"
@@ -140,7 +140,7 @@
 					Background="Transparent"
 					BorderThickness="0"
 					Command="{Binding NewPersonCmd}"
-					ToolTip="{Binding NewPerson, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}">
+					ToolTip="{Binding NewPerson, Source={x:Static lang:MsgText.Instance}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
 					<StackPanel Height="Auto" Orientation="Horizontal">
 						<materialDesign:PackIcon
 							Width="auto"
@@ -191,27 +191,27 @@
 						Width="Auto"
 						MinWidth="200"
 						Binding="{Binding Name}"
-						Header="{Binding Name, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}" />
+						Header="{Binding Name, Source={x:Static lang:MsgText.Instance}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 					<DataGridTextColumn
 						Width="Auto"
 						MinWidth="100"
 						Binding="{Binding Company}"
-						Header="{Binding Company, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}" />
+						Header="{Binding Company, Source={x:Static lang:MsgText.Instance}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 					<DataGridTextColumn
 						Width="Auto"
 						MinWidth="80"
 						Binding="{Binding Phone}"
-						Header="{Binding Phone, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}" />
+						Header="{Binding Phone, Source={x:Static lang:MsgText.Instance}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 					<DataGridTextColumn
 						Width="Auto"
 						MinWidth="80"
 						Binding="{Binding CellPhone}"
-						Header="{Binding CellPhone, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}" />
+						Header="{Binding CellPhone, Source={x:Static lang:MsgText.Instance}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 					<DataGridTextColumn
 						Width="Auto"
 						MinWidth="80"
 						Binding="{Binding Email}"
-						Header="{Binding Email, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}" />
+						Header="{Binding Email, Source={x:Static lang:MsgText.Instance}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 				</DataGrid.Columns>
 			</DataGrid>
 		</StackPanel>
