@@ -51,6 +51,7 @@
 					BorderThickness="0"
 					Command="{Binding OpenPhotoCmd}"
 					CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:Flyout}}"
+					Style="{StaticResource MaterialDesignRaisedButton}"
 					ToolTip="{Binding OpenPhoto, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}">
 					<StackPanel Height="Auto" Orientation="Horizontal">
 						<materialDesign:PackIcon
@@ -58,6 +59,7 @@
 							Height="Auto"
 							HorizontalAlignment="Stretch"
 							VerticalAlignment="Stretch"
+							Foreground="Blue"
 							Kind="FolderImage" />
 					</StackPanel>
 				</Button>

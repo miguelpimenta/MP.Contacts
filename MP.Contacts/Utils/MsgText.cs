@@ -72,7 +72,7 @@ namespace MP.Contacts.Utils
         public string OpenMenu { get => Lang.Equals("pt-PT") ? "Abrir Menu" : "Open Menu"; }
         public string FileMenu { get => Lang.Equals("pt-PT") ? "" : ""; }
         public string Contacts { get => Lang.Equals("pt-PT") ? "Contactos" : "Contacts"; }
-        public string NewContact { get => Lang.Equals("pt-PT") ? "Novo Contacto" : "New Contacts"; }
+        public string NewContact { get => Lang.Equals("pt-PT") ? "Novo Contacto" : "New Contact"; }
         public string EditContact { get => Lang.Equals("pt-PT") ? "Alterar Contacto" : "Edit Contact"; }
 
         public void UpdateLanguage()
