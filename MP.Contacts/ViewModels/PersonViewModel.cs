@@ -83,28 +83,34 @@ namespace MP.Contacts.ViewModels
 
         private void TestData()
         {
-            string[] names = { "Manuel", "Joaquim", "Rui", "José", "António", "Fagundes" };
-            string[] surnames = { "Oliveira", "Ferreira", "Costa", "Antunes", "Morais", "Pinheiro" };
-            string[] companies = { "Random SA", "Randonized LDA", "", "Neo-Geo Co.", "Nintendo", "Sega Corp." };
-            string[] emails = { "qwfwgeg@wqrfqwq.com", "wqrqwfqwAGAV@wrqwr.pt", "ewrqwqg@gmail.com", "qgfsgqgasgsd@wrewt.es", "eagetweyew88@wf88saf.fr", "wegdsdg@wer.com" };
+            try
+            {
+                string[] names = { "Manuel", "Joaquim", "Rui", "José", "António", "John", "Alec", "Alex", "James", "Arnold", "Jack", "Markus", "Tom", "Clint", "Samuel", "Morgan", "Maria", "Alicia", "Jane", "Grace", "Gladys", "Jennifer", "Meryl", "Julie" };
+                string[] surnames = { "Oliveira", "Ferreira", "Costa", "Antunes", "Morais", "Pinheiro", "Smith", "Parker", "Bond", "Stallone", "Lee", "Hanks", "Hackman", "Costner", "Eastwood", "Jackson", "Freeman" };
+                string[] companies = { "Random SA", "Randonized Corp.", "", "Unhandled Exception", "Floating Point SA", "Threadripper Corp.", "", "Special Co.", "No Name Corp." };
+                string[] emails = { "qwfwgeg@wqrfqwq.com", "wqrqwfqwAGAV@wrqwr.pt", "ewrqwqg@gmail.com", "qgfsgqgasgsd@wrewt.es", "eagetweyew88@wf88saf.fr", "wegdsdg@wer.com" };
 
-            Random rnd = new Random();
+                Random rnd = new Random();
 
-            Person.Name = names[rnd.Next(0, names.Length)] + " " + surnames[rnd.Next(0, names.Length)];
-            Person.Company = companies[rnd.Next(0, companies.Length)];
-            Person.Phone = rnd.Next(200000000, 299999999).ToString();
-            Person.CellPhone = rnd.Next(910000000, 969999999).ToString();
-            Person.Email = emails[rnd.Next(0, emails.Length)];
+                Person.Name = names[rnd.Next(0, names.Length)] + " " + surnames[rnd.Next(0, names.Length)];
+                Person.Company = companies[rnd.Next(0, companies.Length)];
+                Person.Phone = rnd.Next(200000000, 299999999).ToString();
+                Person.CellPhone = rnd.Next(910000000, 969999999).ToString();
+                Person.Email = emails[rnd.Next(0, emails.Length)];
 
-            const string chars01 = "abcd efgh ijkl mnop qrst uvwxyz";
-            Person.Address = new string(Enumerable.Repeat(chars01, rnd.Next(5, 50)).Select(s => s[rnd.Next(s.Length)]).ToArray());
+                const string chars01 = "abcd efgh ijkl mnop qrst uvwxyz";
+                Person.Address = new string(Enumerable.Repeat(chars01, rnd.Next(5, 50)).Select(s => s[rnd.Next(s.Length)]).ToArray());
 
-            const string chars02 = "abcdefghijklmnopqrstuvwxyz ";
-            Person.Locality = new string(Enumerable.Repeat(chars02, rnd.Next(10, 25)).Select(s => s[rnd.Next(s.Length)]).ToArray());
+                const string chars02 = "abcdefghijklmnopqrstuvwxyz ";
+                Person.Locality = new string(Enumerable.Repeat(chars02, rnd.Next(10, 25)).Select(s => s[rnd.Next(s.Length)]).ToArray());
 
-            Person.PostalCode = rnd.Next(4000, 8000).ToString();
-            const string chars03 = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789\n";
-            Person.Obs = new string(Enumerable.Repeat(chars03, rnd.Next(20, 500)).Select(s => s[rnd.Next(s.Length)]).ToArray());
+                Person.PostalCode = rnd.Next(4000, 8000).ToString();
+                const string chars03 = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789\n";
+                Person.Obs = new string(Enumerable.Repeat(chars03, rnd.Next(20, 500)).Select(s => s[rnd.Next(s.Length)]).ToArray());
+            }
+            catch (Exception ex)
+            {
+            }
         }
 
         #endregion TestData
@@ -172,7 +178,7 @@ namespace MP.Contacts.ViewModels
             {
                 Multiselect = false,
                 Filter = "Image Files| *.jpg; *.jpeg; *.png; *.gif; *.tif;",
-                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)
             };
             if (ofd.ShowDialog() == true)
             {

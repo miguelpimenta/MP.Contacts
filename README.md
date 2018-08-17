@@ -8,5 +8,5 @@ Remake of an old App done in Winforms (6/7 years ago...). Remake mostly done for
    [Material Design In XAML Toolkit](http://materialdesigninxaml.net/)   
    [Toast Notifications](https://github.com/rafallopatka/ToastNotifications)
    
-And somehow end up with some kind of template for bigger apps...
+<img src="https://github.com/miguelpimenta/MP.Contacts/blob/master/Gif/sample.gif" width="800" height="600" />
    

@@ -47,7 +47,7 @@
     <Setting Name="DBBinFileSizeLimit" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">250000</Value>
     </Setting>
-    <Setting Name="Culture" Type="System.String" Scope="Application">
+    <Setting Name="Culture" Type="System.String" Scope="User">
       <Value Profile="(Default)">en-EN</Value>
     </Setting>
   </Settings>
