@@ -8,13 +8,16 @@
 	xmlns:domain="clr-namespace:MP.Contacts"
 	xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
 	xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-	xmlns:lang="clr-namespace:MP.Contacts.Utils"
+	xmlns:lang="http://wpflocalizeextension.codeplex.com"
 	xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 	xmlns:system="clr-namespace:System;assembly=mscorlib"
-	Title="{Binding Title, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+	Title="{lang:Loc Title}"
 	Width="1000"
 	Height="650"
 	dialog:DialogParticipation.Register="{Binding}"
+	lang:LocalizeDictionary.DesignCulture="en"
+	lang:ResxLocalizationProvider.DefaultAssembly="MP.Contacts"
+	lang:ResxLocalizationProvider.DefaultDictionary="Resources"
 	Background="{DynamicResource MaterialDesignPaper}"
 	FontFamily="{StaticResource MaterialDesignFont}"
 	TextElement.FontSize="13"
@@ -180,23 +183,23 @@
 							x:Name="MenuToggleButton"
 							IsChecked="False"
 							Style="{StaticResource MaterialDesignHamburgerToggleButton}"
-							ToolTip="{Binding OpenMenu, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}" />
+							ToolTip="{lang:Loc OpenMenu}" />
 						<materialDesign:PopupBox
 							DockPanel.Dock="Right"
 							PlacementMode="BottomAndAlignRightEdges"
 							StaysOpen="False"
-							ToolTip="{Binding FileMenu, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}">
+							ToolTip="{lang:Loc FileMenu}">
 							<StackPanel>
 								<Button Command="{Binding TestCmd}" Content="Hello World" />
 								<Separator />
-								<Button Command="{Binding CloseCmd}" Content="{Binding Exit, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}" />
+								<Button Command="{Binding CloseCmd}" Content="{lang:Loc Exit}" />
 							</StackPanel>
 						</materialDesign:PopupBox>
 						<TextBlock
 							HorizontalAlignment="Center"
 							VerticalAlignment="Center"
 							FontSize="22"
-							Text="{Binding Title, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}" />
+							Text="{lang:Loc Title}" />
 					</DockPanel>
 				</materialDesign:ColorZone>
 				<Grid>

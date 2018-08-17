@@ -12,6 +12,7 @@ using System.Windows.Threading;
 using ToastNotifications;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Position;
+using WPFLocalizeExtension.Engine;
 
 namespace MP.Contacts.ViewModels
 {
@@ -31,7 +32,7 @@ namespace MP.Contacts.ViewModels
         #region Singleton
 
         private static MainViewModel instance = null;
-        private static object lockThis = new object();
+        private static readonly object lockThis = new object();
 
         public MainViewModel()
         {
@@ -47,9 +48,9 @@ namespace MP.Contacts.ViewModels
 
             var home = new MenuItem
             {
-                Name = MsgText.Instance.Home,
-                Text = MsgText.Instance.Home,
-                ToolTip = MsgText.Instance.Home,
+                Name = LocalizeDictionary.Instance.GetLocalizedObject("Home", null, LocalizeDictionary.Instance.Culture).ToString(),
+                Text = LocalizeDictionary.Instance.GetLocalizedObject("Home", null, LocalizeDictionary.Instance.Culture).ToString(),
+                ToolTip = LocalizeDictionary.Instance.GetLocalizedObject("Home", null, LocalizeDictionary.Instance.Culture).ToString(),
                 Icon = new PackIcon
                 {
                     Kind = PackIconKind.Home,
@@ -63,9 +64,9 @@ namespace MP.Contacts.ViewModels
 
             var contacts = new MenuItem
             {
-                Name = MsgText.Instance.Contacts,
-                Text = MsgText.Instance.Contacts,
-                ToolTip = MsgText.Instance.Contacts,
+                Name = LocalizeDictionary.Instance.GetLocalizedObject("Contacts", null, LocalizeDictionary.Instance.Culture).ToString(),
+                Text = LocalizeDictionary.Instance.GetLocalizedObject("Contacts", null, LocalizeDictionary.Instance.Culture).ToString(),
+                ToolTip = LocalizeDictionary.Instance.GetLocalizedObject("Contacts", null, LocalizeDictionary.Instance.Culture).ToString(),
                 Icon = new PackIcon
                 {
                     Kind = PackIconKind.Contacts,

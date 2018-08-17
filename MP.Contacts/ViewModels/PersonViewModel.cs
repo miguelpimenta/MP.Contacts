@@ -67,14 +67,14 @@ namespace MP.Contacts.ViewModels
 
             if (NewPerson)
             {
-                Title = MsgText.Instance.NewContact;
+                Title = _msgTxt.TransLatedString("NewContact");
                 Person = new Person();
 
                 TestData();
             }
             else
             {
-                Title = MsgText.Instance.EditContact;
+                Title = _msgTxt.TransLatedString("EditContact");
                 Person = person;
             }
         }
@@ -111,7 +111,7 @@ namespace MP.Contacts.ViewModels
 
         private async Task SaveAsync(object arg)
         {
-            var ctrl = await _dlgCoord.ShowProgressAsync(this, _msgTxt.PleaseWait, _msgTxt.Waiting,
+            var ctrl = await _dlgCoord.ShowProgressAsync(this, _msgTxt.TransLatedString("PleaseWait"), _msgTxt.TransLatedString("Waiting"),
                 false, _dlgSet.DlgDefaultSets).ConfigureAwait(false);
             ctrl.SetIndeterminate();
             await Task.Run(async () =>
@@ -130,7 +130,7 @@ namespace MP.Contacts.ViewModels
                         if (dal.InsertPerson(Person))
                         {
                             await ctrl.CloseAsync().ConfigureAwait(false);
-                            await _dispatcher.BeginInvoke(new Action(() => MainViewModel.Instance.Notifier.ShowSuccess(_msgTxt.SaveSuccess, toastMsgOpt)), DispatcherPriority.Normal);
+                            await _dispatcher.BeginInvoke(new Action(() => MainViewModel.Instance.Notifier.ShowSuccess(_msgTxt.TransLatedString("SaveSuccess"), toastMsgOpt)), DispatcherPriority.Normal);
                         }
                     }
                     else
@@ -138,7 +138,7 @@ namespace MP.Contacts.ViewModels
                         if (dal.UpdatePerson(Person))
                         {
                             await ctrl.CloseAsync().ConfigureAwait(false);
-                            await _dispatcher.BeginInvoke(new Action(() => MainViewModel.Instance.Notifier.ShowInformation(_msgTxt.UpdateSuccess, toastMsgOpt)), DispatcherPriority.Normal);
+                            await _dispatcher.BeginInvoke(new Action(() => MainViewModel.Instance.Notifier.ShowInformation(_msgTxt.TransLatedString("UpdateSuccess"), toastMsgOpt)), DispatcherPriority.Normal);
                         }
                     }
                 }
@@ -187,7 +187,7 @@ namespace MP.Contacts.ViewModels
                 }
                 else
                 {
-                    await _dlgCoord.ShowMessageAsync(this, _msgTxt.Error, _msgTxt.ErrorMSgFileSize,
+                    await _dlgCoord.ShowMessageAsync(this, _msgTxt.TransLatedString("Error"), _msgTxt.TransLatedString("ErrorMSgFileSize"),
                         MessageDialogStyle.Affirmative, _dlgSet.DlgErrorSets).ConfigureAwait(false);
                 }
             }

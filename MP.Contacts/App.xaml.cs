@@ -1,11 +1,13 @@
 ﻿using MP.Contacts.Views;
 using System;
+using System.Globalization;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
+using WPFLocalizeExtension.Engine;
 
 namespace MP.Contacts
 {
@@ -20,6 +22,9 @@ namespace MP.Contacts
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            LocalizeDictionary.Instance.SetCurrentThreadCulture = true;
+            LocalizeDictionary.Instance.Culture = new CultureInfo("en");
+
             CheckInstance();
 
             bool debug = false;
@@ -110,7 +115,8 @@ namespace MP.Contacts
             get
             {
                 object[] attributes = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(GuidAttribute), false);
-                if (attributes.Length == 0) { return String.Empty; }
+                if (attributes.Length == 0)
+                { return String.Empty; }
                 return ((GuidAttribute)attributes[0]).Value.ToUpper();
             }
         }

@@ -5,7 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
 	xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-	xmlns:lang="clr-namespace:MP.Contacts.Utils"
+	xmlns:lang="http://wpflocalizeextension.codeplex.com"
 	xmlns:local="clr-namespace:MP.Contacts.Views"
 	xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 	xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
@@ -13,6 +13,9 @@
 	MinWidth="500"
 	MinHeight="600"
 	dialog:DialogParticipation.Register="{Binding}"
+	lang:LocalizeDictionary.DesignCulture="en"
+	lang:ResxLocalizationProvider.DefaultAssembly="MP.Contacts"
+	lang:ResxLocalizationProvider.DefaultDictionary="Resources"
 	Background="{DynamicResource MaterialDesignPaper}"
 	FontFamily="{DynamicResource MaterialDesignFont}"
 	FontSize="16"
@@ -49,13 +52,13 @@
 			</StackPanel>
 			<StackPanel Orientation="Vertical">
 				<TextBox
-					materialDesign:HintAssist.Hint="{Binding Name, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+					materialDesign:HintAssist.Hint="{lang:Loc Name}"
 					materialDesign:HintAssist.IsFloating="True"
 					FontWeight="Bold"
 					IsReadOnly="True"
 					Text="{Binding Path=SelectedPerson.Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 				<TextBox
-					materialDesign:HintAssist.Hint="{Binding Company, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+					materialDesign:HintAssist.Hint="{lang:Loc Company}"
 					materialDesign:HintAssist.IsFloating="True"
 					FontWeight="Bold"
 					IsReadOnly="True"
@@ -65,7 +68,7 @@
 				<TextBox
 					Width="110"
 					HorizontalContentAlignment="Center"
-					materialDesign:HintAssist.Hint="{Binding Phone, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+					materialDesign:HintAssist.Hint="{lang:Loc Phone}"
 					materialDesign:HintAssist.IsFloating="True"
 					FontSize="16"
 					FontWeight="Bold"
@@ -75,7 +78,7 @@
 					Width="110"
 					Margin="10,0,0,0"
 					HorizontalContentAlignment="Center"
-					materialDesign:HintAssist.Hint="{Binding CellPhone, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+					materialDesign:HintAssist.Hint="{lang:Loc CellPhone}"
 					materialDesign:HintAssist.IsFloating="True"
 					FontSize="16"
 					FontWeight="Bold"
@@ -84,13 +87,13 @@
 			</StackPanel>
 			<StackPanel Orientation="Vertical">
 				<TextBox
-					materialDesign:HintAssist.Hint="{Binding Email, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+					materialDesign:HintAssist.Hint="{lang:Loc Email}"
 					materialDesign:HintAssist.IsFloating="True"
 					FontWeight="Bold"
 					IsReadOnly="True"
 					Text="{Binding Path=SelectedPerson.Email, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 				<TextBox
-					materialDesign:HintAssist.Hint="{Binding WebPage, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+					materialDesign:HintAssist.Hint="{lang:Loc WebPage}"
 					materialDesign:HintAssist.IsFloating="True"
 					FontWeight="Bold"
 					IsReadOnly="True"
@@ -108,7 +111,7 @@
 					Width="200"
 					Height="40"
 					Margin="0,0,0,10"
-					materialDesign:HintAssist.Hint="{Binding Search, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+					materialDesign:HintAssist.Hint="{lang:Loc Search}"
 					materialDesign:HintAssist.IsFloating="True"
 					Text="{Binding SearchTerms, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 					<TextBox.InputBindings>
@@ -122,7 +125,7 @@
 					Background="Transparent"
 					BorderThickness="0"
 					Command="{Binding RefreshCmd}"
-					ToolTip="{Binding Refresh, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}">
+					ToolTip="{lang:Loc Refresh}">
 					<StackPanel Height="Auto" Orientation="Horizontal">
 						<materialDesign:PackIcon
 							Width="auto"
@@ -140,7 +143,7 @@
 					Background="Transparent"
 					BorderThickness="0"
 					Command="{Binding NewPersonCmd}"
-					ToolTip="{Binding NewPerson, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}">
+					ToolTip="{lang:Loc NewPerson}">
 					<StackPanel Height="Auto" Orientation="Horizontal">
 						<materialDesign:PackIcon
 							Width="auto"
@@ -191,27 +194,27 @@
 						Width="Auto"
 						MinWidth="200"
 						Binding="{Binding Name}"
-						Header="{Binding Name, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}" />
+						Header="{lang:Loc Name}" />
 					<DataGridTextColumn
 						Width="Auto"
 						MinWidth="100"
 						Binding="{Binding Company}"
-						Header="{Binding Company, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}" />
+						Header="{lang:Loc Company}" />
 					<DataGridTextColumn
 						Width="Auto"
 						MinWidth="80"
 						Binding="{Binding Phone}"
-						Header="{Binding Phone, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}" />
+						Header="{lang:Loc Phone}" />
 					<DataGridTextColumn
 						Width="Auto"
 						MinWidth="80"
 						Binding="{Binding CellPhone}"
-						Header="{Binding CellPhone, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}" />
+						Header="{lang:Loc CellPhone}" />
 					<DataGridTextColumn
 						Width="Auto"
 						MinWidth="80"
 						Binding="{Binding Email}"
-						Header="{Binding Email, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}" />
+						Header="{lang:Loc Email}" />
 				</DataGrid.Columns>
 			</DataGrid>
 		</StackPanel>

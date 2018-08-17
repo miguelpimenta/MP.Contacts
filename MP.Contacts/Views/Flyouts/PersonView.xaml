@@ -5,7 +5,7 @@
 	xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
-	xmlns:lang="clr-namespace:MP.Contacts.Utils"
+	xmlns:lang="http://wpflocalizeextension.codeplex.com"
 	xmlns:local="clr-namespace:MP.Contacts.Views"
 	xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 	xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
@@ -13,6 +13,9 @@
 	Width="Auto"
 	Height="Auto"
 	dialog:DialogParticipation.Register="{Binding}"
+	lang:LocalizeDictionary.DesignCulture="en"
+	lang:ResxLocalizationProvider.DefaultAssembly="MP.Contacts"
+	lang:ResxLocalizationProvider.DefaultDictionary="Resources"
 	FontFamily="{DynamicResource MaterialDesignFont}"
 	FontSize="16"
 	Foreground="Black"
@@ -51,7 +54,7 @@
 					BorderThickness="0"
 					Command="{Binding OpenPhotoCmd}"
 					CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:Flyout}}"
-					ToolTip="{Binding OpenPhoto, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}">
+					ToolTip="{lang:Loc OpenPhoto}">
 					<StackPanel Height="Auto" Orientation="Horizontal">
 						<materialDesign:PackIcon
 							Width="Auto"
@@ -69,7 +72,7 @@
 				<TextBox
 					Width="500"
 					Height="50"
-					materialDesign:HintAssist.Hint="{Binding Name, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+					materialDesign:HintAssist.Hint="{lang:Loc Name}"
 					materialDesign:HintAssist.IsFloating="True"
 					AcceptsReturn="True"
 					FontSize="16"
@@ -78,7 +81,7 @@
 				<TextBox
 					Width="500"
 					Height="50"
-					materialDesign:HintAssist.Hint="{Binding Company, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+					materialDesign:HintAssist.Hint="{lang:Loc Company}"
 					materialDesign:HintAssist.IsFloating="True"
 					AcceptsReturn="True"
 					FontSize="16"
@@ -93,7 +96,7 @@
 						Height="50"
 						Margin="0,0,10,0"
 						HorizontalContentAlignment="Center"
-						materialDesign:HintAssist.Hint="{Binding Phone, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+						materialDesign:HintAssist.Hint="{lang:Loc Phone}"
 						materialDesign:HintAssist.IsFloating="True"
 						AcceptsReturn="True"
 						FontSize="16"
@@ -105,7 +108,7 @@
 						Height="50"
 						Margin="0,0,10,0"
 						HorizontalContentAlignment="Center"
-						materialDesign:HintAssist.Hint="{Binding CellPhone, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+						materialDesign:HintAssist.Hint="{lang:Loc CellPhone}"
 						materialDesign:HintAssist.IsFloating="True"
 						AcceptsReturn="True"
 						FontSize="16"
@@ -117,7 +120,7 @@
 						Height="50"
 						Margin="0,0,0,0"
 						HorizontalContentAlignment="Center"
-						materialDesign:HintAssist.Hint="{Binding Email, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+						materialDesign:HintAssist.Hint="{lang:Loc Email}"
 						materialDesign:HintAssist.IsFloating="True"
 						AcceptsReturn="True"
 						FontSize="16"
@@ -128,7 +131,7 @@
 				<TextBox
 					Width="500"
 					Height="50"
-					materialDesign:HintAssist.Hint="{Binding Address, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+					materialDesign:HintAssist.Hint="{lang:Loc Address}"
 					materialDesign:HintAssist.IsFloating="True"
 					AcceptsReturn="True"
 					FontSize="16"
@@ -142,7 +145,7 @@
 						Width="300"
 						Height="50"
 						Margin="0,0,10,0"
-						materialDesign:HintAssist.Hint="{Binding Locality, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+						materialDesign:HintAssist.Hint="{lang:Loc Locality}"
 						materialDesign:HintAssist.IsFloating="True"
 						AcceptsReturn="True"
 						FontSize="16"
@@ -153,7 +156,7 @@
 						Height="50"
 						Margin="0,0,0,0"
 						HorizontalContentAlignment="Center"
-						materialDesign:HintAssist.Hint="{Binding PostalCode, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+						materialDesign:HintAssist.Hint="{lang:Loc PostalCode}"
 						materialDesign:HintAssist.IsFloating="True"
 						AcceptsReturn="True"
 						FontSize="16"
@@ -166,7 +169,7 @@
 					Height="80"
 					Margin="0,0,0,0"
 					VerticalContentAlignment="Top"
-					materialDesign:HintAssist.Hint="{Binding Obs, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}"
+					materialDesign:HintAssist.Hint="{lang:Loc Obs}"
 					materialDesign:HintAssist.IsFloating="True"
 					AcceptsReturn="True"
 					FontSize="16"
@@ -186,7 +189,7 @@
 						Command="{Binding SaveCmd}"
 						CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:Flyout}}"
 						Style="{StaticResource MaterialDesignRaisedButton}"
-						ToolTip="{Binding Save, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}">
+						ToolTip="{lang:Loc Save}">
 						<StackPanel Height="Auto" Orientation="Horizontal">
 							<materialDesign:PackIcon
 								Width="Auto"
@@ -207,7 +210,7 @@
 						Command="{Binding CancelCmd}"
 						CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:Flyout}}"
 						Style="{StaticResource MaterialDesignRaisedButton}"
-						ToolTip="{Binding Cancel, Source={x:Static lang:MsgText.Instance}, Mode=OneTime}">
+						ToolTip="{lang:Loc Cancel}">
 						<StackPanel Height="auto" Orientation="Horizontal">
 							<materialDesign:PackIcon
 								Width="Auto"
