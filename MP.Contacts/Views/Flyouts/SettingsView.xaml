@@ -58,7 +58,7 @@
 				Margin="10,0,10,0"
 				Command="{Binding SaveCmd}"
 				Style="{StaticResource MaterialDesignRaisedButton}"
-				ToolTip="{Binding Save, Source={x:Static lang:MsgText.Instance}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+				ToolTip="{lang:Loc Save}">
 				<StackPanel
 					Width="Auto"
 					Height="Auto"
