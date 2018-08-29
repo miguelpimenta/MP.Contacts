@@ -61,12 +61,318 @@ namespace MP.Contacts.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        internal static string Address {
+            get {
+                return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CellPhone.
+        /// </summary>
+        internal static string CellPhone {
+            get {
+                return ResourceManager.GetString("CellPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company.
+        /// </summary>
+        internal static string Company {
+            get {
+                return ResourceManager.GetString("Company", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contacts.
+        /// </summary>
+        internal static string Contacts {
+            get {
+                return ResourceManager.GetString("Contacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Contact.
+        /// </summary>
+        internal static string EditContact {
+            get {
+                return ResourceManager.GetString("EditContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        internal static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Something didn&apos;t work!.
+        /// </summary>
+        internal static string ErrorMSgDefault {
+            get {
+                return ResourceManager.GetString("ErrorMSgDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File with more than 250kb..
+        /// </summary>
+        internal static string ErrorMSgFileSize {
+            get {
+                return ResourceManager.GetString("ErrorMSgFileSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        internal static string Exit {
+            get {
+                return ResourceManager.GetString("Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menu.
+        /// </summary>
+        internal static string FileMenu {
+            get {
+                return ResourceManager.GetString("FileMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        internal static string Home {
+            get {
+                return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information.
+        /// </summary>
+        internal static string Info {
+            get {
+                return ResourceManager.GetString("Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading.
+        /// </summary>
+        internal static string Loading {
+            get {
+                return ResourceManager.GetString("Loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locality.
+        /// </summary>
+        internal static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Contact.
+        /// </summary>
+        internal static string NewContact {
+            get {
+                return ResourceManager.GetString("NewContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Person.
+        /// </summary>
+        internal static string NewPerson {
+            get {
+                return ResourceManager.GetString("NewPerson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obs.
+        /// </summary>
+        internal static string Obs {
+            get {
+                return ResourceManager.GetString("Obs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Menu.
+        /// </summary>
+        internal static string OpenMenu {
+            get {
+                return ResourceManager.GetString("OpenMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Photo.
+        /// </summary>
+        internal static string OpenPhoto {
+            get {
+                return ResourceManager.GetString("OpenPhoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        internal static string Phone {
+            get {
+                return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Wait.
+        /// </summary>
+        internal static string PleaseWait {
+            get {
+                return ResourceManager.GetString("PleaseWait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Postal Code.
+        /// </summary>
+        internal static string PostalCode {
+            get {
+                return ResourceManager.GetString("PostalCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        internal static string Refresh {
+            get {
+                return ResourceManager.GetString("Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Success.
+        /// </summary>
+        internal static string SaveSuccess {
+            get {
+                return ResourceManager.GetString("SaveSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        internal static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contacts.
+        /// </summary>
+        internal static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Success.
+        /// </summary>
+        internal static string UpdateSuccess {
+            get {
+                return ResourceManager.GetString("UpdateSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap User {
             get {
                 object obj = ResourceManager.GetObject("User", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading.
+        /// </summary>
+        internal static string Waiting {
+            get {
+                return ResourceManager.GetString("Waiting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Web.
+        /// </summary>
+        internal static string WebPage {
+            get {
+                return ResourceManager.GetString("WebPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome.
+        /// </summary>
+        internal static string Welcome01 {
+            get {
+                return ResourceManager.GetString("Welcome01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Have a nice day.
+        /// </summary>
+        internal static string Welcome02 {
+            get {
+                return ResourceManager.GetString("Welcome02", resourceCulture);
             }
         }
     }

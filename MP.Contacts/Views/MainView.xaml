@@ -1,233 +1,233 @@
 ﻿<controls:MetroWindow
-	x:Class="MP.Contacts.Views.MainView"
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:Flyouts="clr-namespace:MP.Contacts.Views.Flyouts"
-	xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
-	xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
-	xmlns:domain="clr-namespace:MP.Contacts"
-	xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-	xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-	xmlns:lang="http://wpflocalizeextension.codeplex.com"
-	xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-	xmlns:system="clr-namespace:System;assembly=mscorlib"
-	Title="{lang:Loc Title}"
-	Width="1000"
-	Height="650"
-	dialog:DialogParticipation.Register="{Binding}"
-	lang:LocalizeDictionary.DesignCulture="en"
-	lang:ResxLocalizationProvider.DefaultAssembly="MP.Contacts"
-	lang:ResxLocalizationProvider.DefaultDictionary="Resources"
-	Background="{DynamicResource MaterialDesignPaper}"
-	FontFamily="{StaticResource MaterialDesignFont}"
-	TextElement.FontSize="13"
-	TextElement.FontWeight="Regular"
-	TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-	TextOptions.TextFormattingMode="Ideal"
-	TextOptions.TextRenderingMode="Auto"
-	WindowState="Maximized">
-	<!--<Window.CommandBindings>
+    x:Class="MP.Contacts.Views.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Flyouts="clr-namespace:MP.Contacts.Views.Flyouts"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+    xmlns:domain="clr-namespace:MP.Contacts"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:lang="http://wpflocalizeextension.codeplex.com"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    Title="{lang:Loc Title}"
+    Width="1000"
+    Height="650"
+    dialog:DialogParticipation.Register="{Binding}"
+    lang:LocalizeDictionary.DesignCulture="en"
+    lang:ResxLocalizationProvider.DefaultAssembly="MP.Contacts"
+    lang:ResxLocalizationProvider.DefaultDictionary="Resources"
+    Background="{DynamicResource MaterialDesignPaper}"
+    FontFamily="{StaticResource MaterialDesignFont}"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    WindowState="Maximized">
+    <!--<Window.CommandBindings>
 		<CommandBinding Command="Copy" Executed="OnCopy" />
 	</Window.CommandBindings>-->
 
-	<controls:MetroWindow.RightWindowCommands>
-		<controls:WindowCommands>
+    <controls:MetroWindow.RightWindowCommands>
+        <controls:WindowCommands>
 
-			<Button
-				x:Name="BtnFun"
-				Width="Auto"
-				Height="Auto"
-				Margin="10,0,10,0"
-				HorizontalAlignment="Stretch"
-				Command="{Binding AboutFlyoutCmd}"
-				CommandParameter="{StaticResource True}"
-				ToolTip="?">
-				<StackPanel Height="Auto" Orientation="Horizontal">
-					<materialDesign:PackIcon
-						Width="Auto"
-						Height="Auto"
-						Margin="1,1,1,1"
-						Kind="ThumbUp" />
-				</StackPanel>
-			</Button>
+            <Button
+                x:Name="BtnFun"
+                Width="Auto"
+                Height="Auto"
+                Margin="10,0,10,0"
+                HorizontalAlignment="Stretch"
+                Command="{Binding AboutFlyoutCmd}"
+                CommandParameter="{StaticResource True}"
+                ToolTip="?">
+                <StackPanel Height="Auto" Orientation="Horizontal">
+                    <materialDesign:PackIcon
+                        Width="Auto"
+                        Height="Auto"
+                        Margin="1,1,1,1"
+                        Kind="ThumbUp" />
+                </StackPanel>
+            </Button>
 
-			<Button
-				x:Name="BtnSettings"
-				Width="Auto"
-				Height="Auto"
-				Margin="10,0,10,0"
-				HorizontalAlignment="Stretch"
-				Command="{Binding SettingsFlyoutCmd}"
-				CommandParameter="{StaticResource True}"
-				ToolTip="Config">
-				<StackPanel Height="Auto" Orientation="Horizontal">
-					<materialDesign:PackIcon
-						Width="Auto"
-						Height="Auto"
-						Margin="1,1,1,1"
-						Kind="Settings" />
-				</StackPanel>
-			</Button>
-		</controls:WindowCommands>
-	</controls:MetroWindow.RightWindowCommands>
+            <Button
+                x:Name="BtnSettings"
+                Width="Auto"
+                Height="Auto"
+                Margin="10,0,10,0"
+                HorizontalAlignment="Stretch"
+                Command="{Binding SettingsFlyoutCmd}"
+                CommandParameter="{StaticResource True}"
+                ToolTip="Config">
+                <StackPanel Height="Auto" Orientation="Horizontal">
+                    <materialDesign:PackIcon
+                        Width="Auto"
+                        Height="Auto"
+                        Margin="1,1,1,1"
+                        Kind="Settings" />
+                </StackPanel>
+            </Button>
+        </controls:WindowCommands>
+    </controls:MetroWindow.RightWindowCommands>
 
-	<controls:MetroWindow.LeftWindowCommands>
-		<controls:WindowCommands>
-			<Button>
-				<materialDesign:PackIcon
-					Width="Auto"
-					Height="Auto"
-					Margin="1,1,1,1"
-					Kind="GithubFace" />
-			</Button>
-		</controls:WindowCommands>
-	</controls:MetroWindow.LeftWindowCommands>
+    <controls:MetroWindow.LeftWindowCommands>
+        <controls:WindowCommands>
+            <Button>
+                <materialDesign:PackIcon
+                    Width="Auto"
+                    Height="Auto"
+                    Margin="1,1,1,1"
+                    Kind="GithubFace" />
+            </Button>
+        </controls:WindowCommands>
+    </controls:MetroWindow.LeftWindowCommands>
 
-	<controls:MetroWindow.Flyouts>
-		<controls:FlyoutsControl>
-			<controls:Flyout
-				x:Name="FlyoutAbout"
-				Width="Auto"
-				AnimateOnPositionChange="True"
-				AnimateOpacity="True"
-				AreAnimationsEnabled="True"
-				CloseButtonVisibility="Visible"
-				ExternalCloseButton="Left"
-				IsModal="False"
-				IsOpen="{Binding FlyoutAbout, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-				IsPinned="True"
-				Position="Top"
-				Theme="Accent"
-				TitleVisibility="Visible" />
+    <controls:MetroWindow.Flyouts>
+        <controls:FlyoutsControl>
+            <controls:Flyout
+                x:Name="FlyoutAbout"
+                Width="Auto"
+                AnimateOnPositionChange="True"
+                AnimateOpacity="True"
+                AreAnimationsEnabled="True"
+                CloseButtonVisibility="Visible"
+                ExternalCloseButton="Left"
+                IsModal="False"
+                IsOpen="{Binding FlyoutAbout, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                IsPinned="True"
+                Position="Top"
+                Theme="Accent"
+                TitleVisibility="Visible" />
 
-			<controls:Flyout
-				x:Name="FlyoutSettings"
-				Width="Auto"
-				AnimateOnPositionChange="True"
-				AnimateOpacity="True"
-				AreAnimationsEnabled="True"
-				CloseButtonVisibility="Visible"
-				ExternalCloseButton="Left"
-				IsModal="False"
-				IsOpen="{Binding FlyoutSettings, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-				Position="Right"
-				Theme="Accent"
-				TitleVisibility="Visible">
-				<Flyouts:SettingsView />
-			</controls:Flyout>
+            <controls:Flyout
+                x:Name="FlyoutSettings"
+                Width="Auto"
+                AnimateOnPositionChange="True"
+                AnimateOpacity="True"
+                AreAnimationsEnabled="True"
+                CloseButtonVisibility="Visible"
+                ExternalCloseButton="Left"
+                IsModal="False"
+                IsOpen="{Binding FlyoutSettings, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Position="Right"
+                Theme="Accent"
+                TitleVisibility="Visible">
+                <Flyouts:SettingsView />
+            </controls:Flyout>
 
-			<controls:Flyout x:Name="FlyoutContainer" />
-		</controls:FlyoutsControl>
-	</controls:MetroWindow.Flyouts>
+            <controls:Flyout x:Name="FlyoutContainer" />
+        </controls:FlyoutsControl>
+    </controls:MetroWindow.Flyouts>
 
-	<Window.Resources>
-		<ResourceDictionary>
-			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
-				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
-				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
-			</ResourceDictionary.MergedDictionaries>
-		</ResourceDictionary>
-	</Window.Resources>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
 
-	<materialDesign:DialogHost Identifier="RootDialog" SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
-		<materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
-			<materialDesign:DrawerHost.LeftDrawerContent>
-				<DockPanel MinWidth="220">
-					<ToggleButton
-						Margin="15"
-						HorizontalAlignment="Right"
-						DockPanel.Dock="Top"
-						IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}"
-						Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
-					<ListBox
-						x:Name="MenuItemsListBox"
-						Margin="0,0,0,0"
-						ItemsSource="{Binding MenuItems}"
-						PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp"
-						SelectedIndex="1">
-						<ListBox.ItemTemplate>
-							<DataTemplate>
-								<Grid Height="68">
-									<Grid.ColumnDefinitions>
-										<ColumnDefinition Width="64" />
-										<ColumnDefinition />
-									</Grid.ColumnDefinitions>
-									<ContentControl
-										Grid.Column="0"
-										Margin="0"
-										HorizontalAlignment="Stretch"
-										VerticalAlignment="Center"
-										Content="{Binding Icon}"
-										Focusable="False" />
-									<TextBlock
-										Grid.Column="1"
-										VerticalAlignment="Center"
-										FontSize="20"
-										Text="{Binding Name}" />
-								</Grid>
-							</DataTemplate>
-						</ListBox.ItemTemplate>
-					</ListBox>
-				</DockPanel>
-			</materialDesign:DrawerHost.LeftDrawerContent>
+    <materialDesign:DialogHost Identifier="RootDialog" SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
+        <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <DockPanel MinWidth="220">
+                    <ToggleButton
+                        Margin="15"
+                        HorizontalAlignment="Right"
+                        DockPanel.Dock="Top"
+                        IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}"
+                        Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
+                    <ListBox
+                        x:Name="MenuItemsListBox"
+                        Margin="0,0,0,0"
+                        ItemsSource="{Binding MenuItems}"
+                        PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp"
+                        SelectedIndex="1">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Height="68">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="64" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <ContentControl
+                                        Grid.Column="0"
+                                        Margin="0"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Center"
+                                        Content="{Binding Icon}"
+                                        Focusable="False" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        VerticalAlignment="Center"
+                                        FontSize="20"
+                                        Text="{Binding Name}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </materialDesign:DrawerHost.LeftDrawerContent>
 
-			<DockPanel>
-				<materialDesign:ColorZone
-					Padding="16"
-					materialDesign:ShadowAssist.ShadowDepth="Depth2"
-					DockPanel.Dock="Top"
-					Mode="PrimaryMid">
-					<DockPanel>
-						<ToggleButton
-							x:Name="MenuToggleButton"
-							IsChecked="False"
-							Style="{StaticResource MaterialDesignHamburgerToggleButton}"
-							ToolTip="{lang:Loc OpenMenu}" />
-						<materialDesign:PopupBox
-							DockPanel.Dock="Right"
-							PlacementMode="BottomAndAlignRightEdges"
-							StaysOpen="False"
-							ToolTip="{lang:Loc FileMenu}">
-							<StackPanel>
-								<Button Command="{Binding TestCmd}" Content="Hello World" />
-								<Separator />
-								<Button Command="{Binding CloseCmd}" Content="{lang:Loc Exit}" />
-							</StackPanel>
-						</materialDesign:PopupBox>
-						<TextBlock
-							HorizontalAlignment="Center"
-							VerticalAlignment="Center"
-							FontSize="22"
-							Text="{lang:Loc Title}" />
-					</DockPanel>
-				</materialDesign:ColorZone>
-				<Grid>
-					<Grid.RowDefinitions>
-						<RowDefinition Height="Auto" />
-						<RowDefinition Height="*" />
-					</Grid.RowDefinitions>
-					<ScrollViewer
-						Grid.Row="1"
-						Padding="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.MarginRequirement}"
-						HorizontalScrollBarVisibility="Auto"
-						VerticalScrollBarVisibility="Auto">
-						<ContentControl Content="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.Content}" />
-					</ScrollViewer>
+            <DockPanel>
+                <materialDesign:ColorZone
+                    Padding="16"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                    DockPanel.Dock="Top"
+                    Mode="PrimaryMid">
+                    <DockPanel>
+                        <ToggleButton
+                            x:Name="MenuToggleButton"
+                            IsChecked="False"
+                            Style="{StaticResource MaterialDesignHamburgerToggleButton}"
+                            ToolTip="{lang:Loc OpenMenu}" />
+                        <materialDesign:PopupBox
+                            DockPanel.Dock="Right"
+                            PlacementMode="BottomAndAlignRightEdges"
+                            StaysOpen="False"
+                            ToolTip="{lang:Loc FileMenu}">
+                            <StackPanel>
+                                <Button Command="{Binding TestCmd}" Content="Hello World" />
+                                <Separator />
+                                <Button Command="{Binding CloseCmd}" Content="{lang:Loc Exit}" />
+                            </StackPanel>
+                        </materialDesign:PopupBox>
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="22"
+                            Text="{lang:Loc Title}" />
+                    </DockPanel>
+                </materialDesign:ColorZone>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <ScrollViewer
+                        Grid.Row="1"
+                        Padding="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.MarginRequirement}"
+                        HorizontalScrollBarVisibility="Auto"
+                        VerticalScrollBarVisibility="Auto">
+                        <ContentControl Content="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.Content}" />
+                    </ScrollViewer>
 
-					<materialDesign:Snackbar
-						x:Name="MainViewSnackbar"
-						Grid.Row="1"
-						Width="Auto"
-						Height="Auto"
-						Margin="20,20,20,20"
-						HorizontalAlignment="Center"
-						VerticalAlignment="Bottom"
-						HorizontalContentAlignment="Center"
-						VerticalContentAlignment="Center"
-						MessageQueue="{materialDesign:MessageQueue}" />
-				</Grid>
-			</DockPanel>
-		</materialDesign:DrawerHost>
-	</materialDesign:DialogHost>
+                    <materialDesign:Snackbar
+                        x:Name="MainViewSnackbar"
+                        Grid.Row="1"
+                        Width="Auto"
+                        Height="Auto"
+                        Margin="20,20,20,20"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        MessageQueue="{materialDesign:MessageQueue}" />
+                </Grid>
+            </DockPanel>
+        </materialDesign:DrawerHost>
+    </materialDesign:DialogHost>
 </controls:MetroWindow>

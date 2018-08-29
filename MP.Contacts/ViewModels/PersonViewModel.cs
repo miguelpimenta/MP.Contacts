@@ -22,7 +22,6 @@ namespace MP.Contacts.ViewModels
         private readonly IDialogCoordinator _dlgCoord;
         private readonly Dispatcher _dispatcher;
         private readonly DialogSettings _dlgSet;
-        private readonly MsgText _msgTxt;
         public ICommand SaveCmd { get; }
         public ICommand CancelCmd { get; }
         public ICommand OpenPhotoCmd { get; }
@@ -60,21 +59,20 @@ namespace MP.Contacts.ViewModels
             _dlgCoord = DialogCoordinator.Instance;
             _dispatcher = Application.Current.Dispatcher;
             _dlgSet = DialogSettings.Instance;
-            _msgTxt = MsgText.Instance;
             SaveCmd = new RelayCommandAsync(SaveAsync);
             CancelCmd = new RelayCommandAsync(CancelAsync);
             OpenPhotoCmd = new RelayCommandAsync(OpenPhotoAsync);
 
             if (NewPerson)
             {
-                Title = _msgTxt.TransLatedString("NewContact");
+                Title = LocalizationProvider.GetLocalizedValue<string>("NewContact");
                 Person = new Person();
 
                 TestData();
             }
             else
             {
-                Title = _msgTxt.TransLatedString("EditContact");
+                Title = LocalizationProvider.GetLocalizedValue<string>("EditContact");
                 Person = person;
             }
         }
@@ -117,7 +115,7 @@ namespace MP.Contacts.ViewModels
 
         private async Task SaveAsync(object arg)
         {
-            var ctrl = await _dlgCoord.ShowProgressAsync(this, _msgTxt.TransLatedString("PleaseWait"), _msgTxt.TransLatedString("Waiting"),
+            var ctrl = await _dlgCoord.ShowProgressAsync(this, LocalizationProvider.GetLocalizedValue<string>("PleaseWait"), LocalizationProvider.GetLocalizedValue<string>("Waiting"),
                 false, _dlgSet.DlgDefaultSets).ConfigureAwait(false);
             ctrl.SetIndeterminate();
             await Task.Run(async () =>
@@ -136,7 +134,7 @@ namespace MP.Contacts.ViewModels
                         if (dal.InsertPerson(Person))
                         {
                             await ctrl.CloseAsync().ConfigureAwait(false);
-                            await _dispatcher.BeginInvoke(new Action(() => MainViewModel.Instance.Notifier.ShowSuccess(_msgTxt.TransLatedString("SaveSuccess"), toastMsgOpt)), DispatcherPriority.Normal);
+                            await _dispatcher.BeginInvoke(new Action(() => MainViewModel.Instance.Notifier.ShowSuccess(LocalizationProvider.GetLocalizedValue<string>("SaveSuccess"), toastMsgOpt)), DispatcherPriority.Normal);
                         }
                     }
                     else
@@ -144,7 +142,7 @@ namespace MP.Contacts.ViewModels
                         if (dal.UpdatePerson(Person))
                         {
                             await ctrl.CloseAsync().ConfigureAwait(false);
-                            await _dispatcher.BeginInvoke(new Action(() => MainViewModel.Instance.Notifier.ShowInformation(_msgTxt.TransLatedString("UpdateSuccess"), toastMsgOpt)), DispatcherPriority.Normal);
+                            await _dispatcher.BeginInvoke(new Action(() => MainViewModel.Instance.Notifier.ShowInformation(LocalizationProvider.GetLocalizedValue<string>("UpdateSuccess"), toastMsgOpt)), DispatcherPriority.Normal);
                         }
                     }
                 }
@@ -193,7 +191,7 @@ namespace MP.Contacts.ViewModels
                 }
                 else
                 {
-                    await _dlgCoord.ShowMessageAsync(this, _msgTxt.TransLatedString("Error"), _msgTxt.TransLatedString("ErrorMSgFileSize"),
+                    await _dlgCoord.ShowMessageAsync(this, LocalizationProvider.GetLocalizedValue<string>("Error"), LocalizationProvider.GetLocalizedValue<string>("ErrorMSgFileSize"),
                         MessageDialogStyle.Affirmative, _dlgSet.DlgErrorSets).ConfigureAwait(false);
                 }
             }

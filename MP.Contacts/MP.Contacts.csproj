@@ -123,8 +123,8 @@
     <Compile Include="Support\RelayCommandAsync.cs" />
     <Compile Include="Support\StaticResourceConverter.cs" />
     <Compile Include="Utils\Extensions.cs" />
+    <Compile Include="Utils\LocalizationProvider.cs" />
     <Compile Include="Utils\Log2Txt.cs" />
-    <Compile Include="Utils\MsgText.cs" />
     <Compile Include="ViewModels\PersonsViewModel.cs" />
     <Compile Include="ViewModels\PersonViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />

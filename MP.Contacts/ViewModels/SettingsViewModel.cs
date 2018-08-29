@@ -1,6 +1,4 @@
 ﻿using MP.Contacts.Support;
-using MP.Contacts.Utils;
-using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -20,7 +18,7 @@ namespace MP.Contacts.ViewModels
         public string Language
         {
             get => _language;
-            set { _language = value; RaisePropertyChanged(nameof(Language)); MsgText.Instance.UpdateLanguage(); }
+            set { _language = value; RaisePropertyChanged(nameof(Language)); }
         }
 
         private async Task Save(object arg)

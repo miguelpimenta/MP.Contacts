@@ -24,11 +24,11 @@ namespace MP.Contacts.Views
 
             Task.Factory.StartNew(() =>
             {
-                MainViewSnackbar.MessageQueue.Enqueue(MsgText.Instance.TransLatedString("Welcome01"));
+                MainViewSnackbar.MessageQueue.Enqueue(LocalizationProvider.GetLocalizedValue<string>("Welcome01"));
                 Thread.Sleep(2500);
             }, cancelToken, taskCreatOpt, TaskScheduler.FromCurrentSynchronizationContext()).ContinueWith(t =>
             {
-                MainViewSnackbar.MessageQueue.Enqueue(MsgText.Instance.TransLatedString("Welcome02"));
+                MainViewSnackbar.MessageQueue.Enqueue(LocalizationProvider.GetLocalizedValue<string>("Welcome02"));
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 

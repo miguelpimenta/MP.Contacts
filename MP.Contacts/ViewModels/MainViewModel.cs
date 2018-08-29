@@ -12,7 +12,6 @@ using System.Windows.Threading;
 using ToastNotifications;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Position;
-using WPFLocalizeExtension.Engine;
 
 namespace MP.Contacts.ViewModels
 {
@@ -21,7 +20,6 @@ namespace MP.Contacts.ViewModels
         private readonly IDialogCoordinator _dlgCoord;
         private readonly Dispatcher _dispatcher;
         private readonly DialogSettings _dlgSet;
-        private readonly MsgText _msgTxt;
 
         public ICommand RefreshCmd { get; }
         public ICommand TestCmd { get; }
@@ -39,7 +37,6 @@ namespace MP.Contacts.ViewModels
             _dlgCoord = DialogCoordinator.Instance;
             _dispatcher = Application.Current.Dispatcher;
             _dlgSet = DialogSettings.Instance;
-            _msgTxt = MsgText.Instance;
 
             CloseCmd = new DelegateCommand(CloseApp);
             TestCmd = new RelayCommandAsync(TestAsync);
@@ -48,9 +45,9 @@ namespace MP.Contacts.ViewModels
 
             var home = new MenuItem
             {
-                Name = LocalizeDictionary.Instance.GetLocalizedObject("Home", null, LocalizeDictionary.Instance.Culture).ToString(),
-                Text = LocalizeDictionary.Instance.GetLocalizedObject("Home", null, LocalizeDictionary.Instance.Culture).ToString(),
-                ToolTip = LocalizeDictionary.Instance.GetLocalizedObject("Home", null, LocalizeDictionary.Instance.Culture).ToString(),
+                Name = LocalizationProvider.GetLocalizedValue<string>("Home"),
+                Text = LocalizationProvider.GetLocalizedValue<string>("Home"),
+                ToolTip = LocalizationProvider.GetLocalizedValue<string>("Home"),
                 Icon = new PackIcon
                 {
                     Kind = PackIconKind.Home,
@@ -64,9 +61,10 @@ namespace MP.Contacts.ViewModels
 
             var contacts = new MenuItem
             {
-                Name = LocalizeDictionary.Instance.GetLocalizedObject("Contacts", null, LocalizeDictionary.Instance.Culture).ToString(),
-                Text = LocalizeDictionary.Instance.GetLocalizedObject("Contacts", null, LocalizeDictionary.Instance.Culture).ToString(),
-                ToolTip = LocalizeDictionary.Instance.GetLocalizedObject("Contacts", null, LocalizeDictionary.Instance.Culture).ToString(),
+                //Name = LocalizeDictionary.Instance.GetLocalizedObject("Contacts", null, LocalizeDictionary.Instance.Culture).ToString(),
+                Name = LocalizationProvider.GetLocalizedValue<string>("Contacts"),
+                Text = LocalizationProvider.GetLocalizedValue<string>("Contacts"),
+                ToolTip = LocalizationProvider.GetLocalizedValue<string>("Contacts"),
                 Icon = new PackIcon
                 {
                     Kind = PackIconKind.Contacts,
