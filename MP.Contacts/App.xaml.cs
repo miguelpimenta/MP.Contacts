@@ -23,7 +23,7 @@ namespace MP.Contacts
         protected override void OnStartup(StartupEventArgs e)
         {
             LocalizeDictionary.Instance.SetCurrentThreadCulture = true;
-            LocalizeDictionary.Instance.Culture = new CultureInfo("en");
+            LocalizeDictionary.Instance.Culture = new CultureInfo(Settings.Default.Culture);
 
             CheckInstance();
 

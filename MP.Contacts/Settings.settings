@@ -48,7 +48,7 @@
       <Value Profile="(Default)">250000</Value>
     </Setting>
     <Setting Name="Culture" Type="System.String" Scope="User">
-      <Value Profile="(Default)">en-EN</Value>
+      <Value Profile="(Default)">pt-PT</Value>
     </Setting>
   </Settings>
 </SettingsFile>
