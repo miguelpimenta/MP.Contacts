@@ -1,5 +1,6 @@
 # MP.Contacts
 Small App for saving Contacts.   
+[![BCH compliance](https://bettercodehub.com/edge/badge/miguelpimenta/MP.Contacts?branch=master)](https://bettercodehub.com/)
 
 Remake of an old App done in Winforms (6/7 years ago...). Remake mostly done for test/use the excelent projects:
 
