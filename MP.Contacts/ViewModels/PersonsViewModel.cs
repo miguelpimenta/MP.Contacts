@@ -1,16 +1,11 @@
 ﻿using MahApps.Metro.Controls;
-using MahApps.Metro.Controls.Dialogs;
 using MP.Contacts.DAL;
 using MP.Contacts.Models;
 using MP.Contacts.Support;
 using MP.Contacts.Utils;
-using MP.Contacts.Views;
 using MP.Contacts.Views.Flyouts;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -20,9 +15,7 @@ namespace MP.Contacts.ViewModels
 {
     public class PersonsViewModel : BindableBase
     {
-        private readonly IDialogCoordinator _dlgCoord;
         private readonly Dispatcher _dispatcher;
-        private readonly DialogSettings _dlgSet;
 
         public ICommand LoadedCmd { get; }
         public ICommand RefreshCmd { get; }
@@ -37,9 +30,7 @@ namespace MP.Contacts.ViewModels
 
         private PersonsViewModel()
         {
-            _dlgCoord = DialogCoordinator.Instance;
             _dispatcher = Application.Current.Dispatcher;
-            _dlgSet = DialogSettings.Instance;
 
             LoadedCmd = new RelayCommandAsync(LoadedAsync);
             RefreshCmd = new RelayCommandAsync(RefreshAsync);
@@ -96,9 +87,9 @@ namespace MP.Contacts.ViewModels
 
         #endregion Collections
 
-        internal async Task RefreshPersonsAsync()
+        internal Task RefreshPersonsAsync()
         {
-            await RefreshAsync(null).ConfigureAwait(false);
+            return RefreshAsync(null);
         }
 
         private async Task LoadedAsync(object arg)
@@ -171,23 +162,23 @@ namespace MP.Contacts.ViewModels
 
         private async Task OpenPersonAsync(object arg)
         {
-            if (arg != null)
+            if (arg != null && arg is Person person)
             {
-                try
+                await Task.Run(() =>
                 {
-                    if (arg is Person person)
+                    try
                     {
                         using (ILitedbDAL dal = new LitedbDAL())
                         {
                             SelectedPerson = dal.ReadPerson(person.PkIdPerson);
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    Log2Txt.Instance.ErrorLog(ex.ToString());
-                    throw;
-                }
+                    catch (Exception ex)
+                    {
+                        Log2Txt.Instance.ErrorLog(ex.ToString());
+                        throw;
+                    }
+                }).ConfigureAwait(false);
             }
         }
     }

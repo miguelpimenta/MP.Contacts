@@ -1,10 +1,7 @@
 ﻿using MahApps.Metro.Controls;
-using MP.Contacts.Support;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows;
-using System.Windows.Input;
 
 namespace MP.Contacts.Models
 {
@@ -13,7 +10,6 @@ namespace MP.Contacts.Models
         private object _name;
         private object _content;
         private string _text;
-        private DelegateCommand _command;
         private Uri _navigationDestination;
 
         public object Name
@@ -34,12 +30,6 @@ namespace MP.Contacts.Models
             set { this.SetProperty(ref this._text, value); }
         }
 
-        public ICommand Command
-        {
-            get { return this._command; }
-            set { this.SetProperty(ref this._command, (DelegateCommand)value); }
-        }
-
         public Uri NavigationDestination
         {
             get { return this._navigationDestination; }
@@ -47,20 +37,6 @@ namespace MP.Contacts.Models
         }
 
         public bool IsNavigation => this._navigationDestination != null;
-
-        //// Tooltip
-        ////https://github.com/MahApps/MahApps.Metro/issues/2928
-        //public static readonly DependencyProperty ToolTipProperty
-        //    = DependencyProperty.Register("ToolTip",
-        //        typeof(object),
-        //        typeof(MenuItem),
-        //        new PropertyMetadata(null));
-
-        //public object ToolTip
-        //{
-        //    get { return (object)GetValue(ToolTipProperty); }
-        //    set { SetValue(ToolTipProperty, value); }
-        //}
 
         /// <summary>
         /// Multicast event for property change notifications.
@@ -81,7 +57,8 @@ namespace MP.Contacts.Models
         /// desired value.</returns>
         protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
         {
-            if (Equals(storage, value)) return false;
+            if (Equals(storage, value))
+                return false;
 
             storage = value;
             this.OnPropertyChanged(propertyName);

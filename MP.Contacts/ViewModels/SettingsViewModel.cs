@@ -1,5 +1,4 @@
 ﻿using MP.Contacts.Support;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace MP.Contacts.ViewModels
@@ -10,7 +9,7 @@ namespace MP.Contacts.ViewModels
 
         public SettingsViewModel()
         {
-            SaveCmd = new RelayCommandAsync(Save);
+            SaveCmd = new RelayCommand(Save);
         }
 
         private string _language = Settings.Default.Culture;
@@ -21,7 +20,7 @@ namespace MP.Contacts.ViewModels
             set { _language = value; RaisePropertyChanged(nameof(Language)); }
         }
 
-        private async Task Save(object arg)
+        private void Save(object arg)
         {
             Settings.Default.Culture = Language;
             Properties.Settings.Default.Save();

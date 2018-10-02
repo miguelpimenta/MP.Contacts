@@ -28,21 +28,11 @@ namespace MP.Contacts.ViewModels
 
         #region Props
 
-        private Person _person;
-        private bool _newPerson;
         private string _title;
 
-        public Person Person
-        {
-            get => _person;
-            set => _person = value;
-        }
+        public Person Person { get; set; }
 
-        public bool NewPerson
-        {
-            get => _newPerson;
-            set => _newPerson = value;
-        }
+        public bool NewPerson { get; set; }
 
         public string Title
         {
@@ -88,7 +78,7 @@ namespace MP.Contacts.ViewModels
                 string[] companies = { "Random SA", "Randonized Corp.", "", "Unhandled Exception", "Floating Point SA", "Threadripper Corp.", "", "Special Co.", "No Name Corp." };
                 string[] emails = { "qwfwgeg@wqrfqwq.com", "wqrqwfqwAGAV@wrqwr.pt", "ewrqwqg@gmail.com", "qgfsgqgasgsd@wrewt.es", "eagetweyew88@wf88saf.fr", "wegdsdg@wer.com" };
 
-                Random rnd = new Random();
+                var rnd = new Random();
 
                 Person.Name = names[rnd.Next(0, names.Length)] + " " + surnames[rnd.Next(0, names.Length)];
                 Person.Company = companies[rnd.Next(0, companies.Length)];
@@ -108,6 +98,8 @@ namespace MP.Contacts.ViewModels
             }
             catch (Exception ex)
             {
+                Log2Txt.Instance.ErrorLog(ex.ToString());
+                throw;
             }
         }
 

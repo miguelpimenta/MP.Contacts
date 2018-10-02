@@ -27,11 +27,8 @@ namespace MP.Contacts
 
             CheckInstance();
 
-            bool debug = false;
 #if DEBUG
-            debug = true;
 #else
-            debug = false;
 #endif
 
             // Run startup code first
@@ -42,7 +39,7 @@ namespace MP.Contacts
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
             // Main
-            MainView wndMain = new MainView();
+            var wndMain = new MainView();
             wndMain.ShowDialog();
         }
 
@@ -50,12 +47,11 @@ namespace MP.Contacts
 
         #region Check if App is running
 
-        private void CheckInstance()
+        private static void CheckInstance()
         {
-            string appName = Assembly.GetExecutingAssembly().GetName().Name;
-            bool createdNew;
+            var appName = Assembly.GetExecutingAssembly().GetName().Name;
 
-            mutex = new Mutex(true, appName, out createdNew);
+            mutex = new Mutex(true, appName, out bool createdNew);
 
             if (!createdNew)
             {
@@ -68,11 +64,11 @@ namespace MP.Contacts
 
         #region Exceptions
 
-        private void AppDispatcher_UnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        private static void AppDispatcher_UnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             e.Handled = true;
 
-            StringBuilder errorMsg = new StringBuilder();
+            var errorMsg = new StringBuilder();
             errorMsg.Append("An application error occurred.\n");
             errorMsg.Append("Please check whether your data is correct and repeat the action.");
             errorMsg.Append("If this error occurs again there seems to be a more serious malfunction in the application, and you better close it.\n\n");
@@ -88,9 +84,9 @@ namespace MP.Contacts
             }
         }
 
-        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            StringBuilder errorMsg = new StringBuilder();
+            var errorMsg = new StringBuilder();
             errorMsg.Append("An application error occurred.\n");
             errorMsg.Append("Please check whether your data is correct and repeat the action.");
             errorMsg.Append("If this error occurs again there seems to be a more serious malfunction in the application, and you better close it.\n\n");
@@ -114,7 +110,7 @@ namespace MP.Contacts
         {
             get
             {
-                object[] attributes = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(GuidAttribute), false);
+                var attributes = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(GuidAttribute), false);
                 if (attributes.Length == 0)
                 { return String.Empty; }
                 return ((GuidAttribute)attributes[0]).Value.ToUpper();

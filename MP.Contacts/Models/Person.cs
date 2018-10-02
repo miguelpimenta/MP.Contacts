@@ -1,14 +1,12 @@
 ﻿using LiteDB;
 using MP.Contacts.Support;
-using System.Collections.Generic;
-using System.IO;
-
-//using System.Windows.Controls;
-using System.Windows.Media;
-using System.Drawing;
-using System.Drawing.Imaging;
 using MP.Contacts.Utils;
 using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Windows.Media;
 
 namespace MP.Contacts.Models
 {
@@ -142,7 +140,8 @@ namespace MP.Contacts.Models
                     }
                     catch (Exception ex)
                     {
-                        return null;
+                        Log2Txt.Instance.ErrorLog(ex.ToString());
+                        throw;
                     }
                 }
             }
