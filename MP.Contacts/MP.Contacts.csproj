@@ -122,6 +122,7 @@
     <Compile Include="Support\RelayCommand.cs" />
     <Compile Include="Support\RelayCommandAsync.cs" />
     <Compile Include="Support\StaticResourceConverter.cs" />
+    <Compile Include="Theme\ThemeManagerHelper.cs" />
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\LocalizationProvider.cs" />
     <Compile Include="Utils\Log2Txt.cs" />

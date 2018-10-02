@@ -16,7 +16,7 @@ namespace MP.Contacts
     /// </summary>
     public partial class App : Application
     {
-        private static Mutex mutex = null;
+        private static Mutex mutex;
 
         #region Starting
 

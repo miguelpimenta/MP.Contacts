@@ -207,13 +207,16 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <ScrollViewer
+                    <ContentControl Grid.Row="1" Padding="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.MarginRequirement}">
+                        <ContentControl Content="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.Content}" />
+                    </ContentControl>
+                    <!--<ScrollViewer
                         Grid.Row="1"
                         Padding="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.MarginRequirement}"
                         HorizontalScrollBarVisibility="Auto"
                         VerticalScrollBarVisibility="Auto">
                         <ContentControl Content="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.Content}" />
-                    </ScrollViewer>
+                    </ScrollViewer>-->
 
                     <materialDesign:Snackbar
                         x:Name="MainViewSnackbar"
