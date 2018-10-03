@@ -107,14 +107,13 @@ namespace MP.Contacts.Models
             set { _active = value; RaisePropertyChanged(nameof(Active)); }
         }
 
-        //[BsonRef("Binaries")]
         public Binary Binary
         {
             get => _binary;
             set { _binary = value; RaisePropertyChanged(nameof(Foto)); }
         }
 
-        [BsonIgnore] //For now
+        [BsonIgnore]
         public List<Contact> Contacts { get; set; }
 
         [BsonIgnore]
@@ -127,22 +126,19 @@ namespace MP.Contacts.Models
                     var s = new ImageSourceConverter();
                     return (ImageSource)s.ConvertFrom(Binary.FileBytes);
                 }
-                else
+                try
                 {
-                    try
-                    {
-                        Image img = Properties.Resources.User;
-                        byte[] buffer;
-                        var memoryStream = new MemoryStream();
-                        img.Save(memoryStream, ImageFormat.Png);
-                        buffer = memoryStream.ToArray();
-                        return buffer.ByteToImageSource();
-                    }
-                    catch (Exception ex)
-                    {
-                        Log2Txt.Instance.ErrorLog(ex.ToString());
-                        throw;
-                    }
+                    Image img = Properties.Resources.User;
+                    byte[] buffer;
+                    var memoryStream = new MemoryStream();
+                    img.Save(memoryStream, ImageFormat.Png);
+                    buffer = memoryStream.ToArray();
+                    return buffer.ByteToImageSource();
+                }
+                catch (Exception ex)
+                {
+                    Log2Txt.Instance.ErrorLog(ex.ToString());
+                    throw;
                 }
             }
         }

@@ -1,5 +1,4 @@
-﻿using System;
-using LiteDB;
+﻿using LiteDB;
 
 namespace MP.Contacts.Models
 {
@@ -11,9 +10,5 @@ namespace MP.Contacts.Models
 
         public byte[] FileBytes { get; set; } = new byte[0];
         public string FileType { get; set; } = string.Empty;
-
-        public Binary()
-        {
-        }
     }
 }

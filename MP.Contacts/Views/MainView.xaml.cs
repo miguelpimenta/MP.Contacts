@@ -39,7 +39,9 @@ namespace MP.Contacts.Views
             while (dependencyObject != null)
             {
                 if (dependencyObject is ScrollBar)
+                {
                     return;
+                }
                 dependencyObject = VisualTreeHelper.GetParent(dependencyObject);
             }
 

@@ -11,7 +11,13 @@ namespace MP.Contacts.Views.Flyouts
     /// </summary>
     public partial class PersonView : UserControl
     {
-        public PersonView(bool newPerson, Person person = null)
+        public PersonView(bool newPerson)
+        {
+            InitializeComponent();
+            DataContext = new PersonViewModel(newPerson);
+        }
+
+        public PersonView(bool newPerson, Person person)
         {
             InitializeComponent();
             DataContext = new PersonViewModel(newPerson, person);
